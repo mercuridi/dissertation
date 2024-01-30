@@ -1,4 +1,5 @@
 import json
+import collections
 import time
 import pandas as pd
 import spacy
@@ -8,8 +9,8 @@ start_time = time.time()
 print("Processing pickle...")
 obj = pd.read_pickle(r'elections2018_tweets-20180830.pkl')
 bots = obj.loc[obj['botscore'] > 0.7]
-bot_id_strs = bots["id_str"].tolist()
-print("Pickle processed.")
+bot_id_strs = set(bots["id_str"])
+print(f"Pickle processed. ID set size: {len(bot_id_strs)}")
 #print(bots)
 #print(bot_id_strs)
 
@@ -18,8 +19,8 @@ raw_data = []
 with open('elections2018_tweets-20180830.json', encoding='utf8') as json_file:
     for line in json_file:
         line_data = json.loads(line)
-        #if line_data["id_str"] in bot_id_strs:
-        raw_data.append(line_data["text"])
+        if line_data["id_str"] in bot_id_strs:
+            raw_data.append(line_data["text"])
 print("JSON processed.")
 
 print("NLP start...")
