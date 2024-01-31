@@ -70,18 +70,25 @@ def process_nlp(raw_data, nlp):
     return nlp_processed
 
 def analyse_sentiment(all_data, sentilex):
+    logging.info("Beginning sentiment analysis...")
     sentiments = []
-    for text in all_data:
-        text_sentiment = 0
-        for word in text:
+    for tweet in all_data:
+        tweet_sentiment = 0
+        for word in tweet:
             try:
-                text_sentiment += int(sentilex.at(word, "POL:N0"))
-            except (KeyError, ValueError):
+                tweet_sentiment += int(sentilex.at[word.text, "POL:N0"])
+            except (KeyError, ValueError, TypeError):
                 continue
             try:
-                text_sentiment += int(sentilex.at(word, "POL:N1"))
-            except (KeyError, ValueError):
+                tweet_sentiment += int(sentilex.at[word.text, "POL:N1"])
+            except (KeyError, ValueError, TypeError):
                 continue
-    print(sentiments)
-                
+        sentiments.append(tweet_sentiment)
+    logging.info("Sentiment analysis complete.")
+    print(sentiments[10:])
+    print()
+    print(f"Average: {sum(sentiments)/len(sentiments)}")
+    opinionated = [x != 0 for x in sentiments]
+    print(f"Opinionated average: {sum(opinionated)/len(opinionated)}")
+
 main()
