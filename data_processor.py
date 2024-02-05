@@ -20,10 +20,7 @@ def read_json(filename):
         return data
 
 pkl_data = read_pkl("data/elections22/elections2022_tweets-20220701.pkl")
-print(pkl_data)
-
 json_data = read_json("data/elections22/elections2022_tweets-20220701.json")
-print(json_data)
 
 logging.info("")
 logging.info("PKL columns:")
@@ -34,3 +31,12 @@ logging.info("")
 logging.info("JSON columns:")
 for col in json_data.columns:
     logging.info(col)
+
+new_data = []
+for index, entry in enumerate(pkl_data):
+    corresponding = json_data.iloc[index]
+    new_data = entry
+    new_data.update({"text": corresponding.text})
+    break
+
+print(new_data)
