@@ -1,27 +1,36 @@
 import logging
 import pickle
 import json
+import pandas as pd
 
-logging.basicConfig(filename='main.log',  \
+logging.basicConfig(filename='reprocessor.log',  \
                 filemode = 'w+',          \
                 encoding='utf-8',         \
                 level=logging.DEBUG)
 
 def read_pkl(filename):
     logging.info("Reading pickle %s...", filename)
-    obj = pd.read_pickle(filename)
-    #bots = obj.loc[obj['botscore'] > 0.7]
-    id_strs = set(obj["id_str"])
-    logging.info("Pickle processed. ID set size: %d", len(id_strs))
-    return id_strs
+    with open(filename, mode="rb") as f:
+        return pd.read_pickle(f)
 
+def read_json(filename):
+    logging.info("Reading JSON %s...", filename)
+    with open(filename, mode="r", encoding="utf8") as f:
+        data = pd.DataFrame(json.loads(line) for line in f)
+        return data
 
-def read_json(filename, bot_id_strs):
-    logging.info("Processing raw JSON data...")
-    raw_data = []
-    with open(filename, encoding='utf8') as json_file:
-        for line in json_file:
-            line_data = json.loads(line)
-            raw_data.append(line_data)
-    logging.info("JSON processed.")
-    return raw_data
+pkl_data = read_pkl("data/elections22/elections2022_tweets-20220701.pkl")
+print(pkl_data)
+
+json_data = read_json("data/elections22/elections2022_tweets-20220701.json")
+print(json_data)
+
+logging.info("")
+logging.info("PKL columns:")
+for col in pkl_data.columns:
+    logging.info(col)
+
+logging.info("")
+logging.info("JSON columns:")
+for col in json_data.columns:
+    logging.info(col)
