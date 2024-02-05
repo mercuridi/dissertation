@@ -15,7 +15,6 @@ def main():
     bot_id_strs = process_tweets_pkl('data/elections2018_tweets-20180830.pkl')
     raw_data = process_tweets_json('data/elections2018_tweets-20180830.json', bot_id_strs)
     sentilex = load_sentilex('data/sentilex.txt')
-    print(sentilex)
     nlp_start = time.time()
     nlp = load_pt_core()
     nlp_processed = process_nlp(raw_data, nlp)
@@ -30,10 +29,10 @@ def main():
 def process_tweets_pkl(filename):
     logging.info("Processing pickle...")
     obj = pd.read_pickle(filename)
-    bots = obj.loc[obj['botscore'] > 0.7]
-    bot_id_strs = set(bots["id_str"])
-    logging.info("Pickle processed. ID set size: %d", len(bot_id_strs))
-    return bot_id_strs
+    #bots = obj.loc[obj['botscore'] > 0.7]
+    id_strs = set(obj["id_str"])
+    logging.info("Pickle processed. ID set size: %d", len(id_strs))
+    return id_strs
 
 def process_tweets_json(filename, bot_id_strs):
     logging.info("Processing raw JSON data...")
@@ -84,11 +83,14 @@ def analyse_sentiment(all_data, sentilex):
             except (KeyError, ValueError, TypeError):
                 continue
         sentiments.append(tweet_sentiment)
-    logging.info("Sentiment analysis complete.")
-    print(sentiments[10:])
-    print()
-    print(f"Average: {sum(sentiments)/len(sentiments)}")
-    opinionated = [x != 0 for x in sentiments]
-    print(f"Opinionated average: {sum(opinionated)/len(opinionated)}")
 
+    sample = sentiments[:10]
+    mean_sentiment = sum(sentiments)/len(sentiments)
+    opinionated = [x != 0 for x in sentiments]
+    logging.info("Sentiment analysis complete. Sample of first 10: %s", sample)
+    logging.info("Average: %d", mean_sentiment)
+    logging.info("Opinionated average: %d", sum(opinionated)/len(opinionated))
+
+print("Calling main driver function.")
 main()
+print("Main driver function complete. See log for details.")
