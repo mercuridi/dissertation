@@ -4,4 +4,6 @@
 *.pkl
 *.log
 
-data/ToLD-Br
+data/ToLD-Br/*
+!data/ToLD-Br/README.md
+!data/ToLD-Br/LICENSE*
