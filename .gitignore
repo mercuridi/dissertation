@@ -3,4 +3,6 @@
 *.json
 *.pkl
 *.log
+
 data/ToLD-Br/*
+!data/ToLD-Br/LICENSE*.txt
