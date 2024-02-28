@@ -24,4 +24,8 @@ Toxic Language Dataset for Brazilian Portuguese (ToLD-Br)
     Medium: Text
 ```
 The most recent version of ToLD-Br at its Github repository as of 14/02/2024 should be cloned into `/data/ToLD-Br/`. The pre-trained BERT model is also kept locally. These assets are not uploaded to this repository due to their large file size (100MB~ for code and data, 1000MB for BERT model). A link to download the pre-trained model can be found in the README for ToLD-Br.
-ToLD-Br's code is licensed under the MIT License, and the dataset itself is licensed under Creative Commons 4.0. These licenses are retained in their entirety within this repository in the directory `/data/ToLD-Br/`.
+ToLD-Br's code is licensed under the MIT License, and the dataset itself is licensed under Creative Commons 4.0.
+
+### NLPyPort
+NLPyPort is a Portuguese-specific improvement to the tools provided in NLTK, developed by Ferreira, Oliveira, and Rodrigues for SLATE 2019.
+It can be found at https://github.com/NLP-CISUC/NLPyPort.
