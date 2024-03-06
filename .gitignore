@@ -4,4 +4,4 @@
 *.pkl
 *.log
 
-ToLD-Br/*
+/ToLD-Br/*
