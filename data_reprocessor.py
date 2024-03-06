@@ -16,6 +16,9 @@ import NLPyPort
 # declare as global so these aren't constantly loaded and unloaded from memory
 NLPYPORT_CONFIG = NLPyPort.load_congif_to_list()
 BR_STOPWORDS = nltk.corpus.stopwords.words("portuguese")
+# regex for removing urls in text processing
+PATTERN = r"(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?"
+TKNZR = nltk.TweetTokenizer(strip_handles=True, reduce_len=True)
 
 logging.basicConfig(filename='reprocessor.log',  \
                 filemode = 'w+',          \
@@ -41,21 +44,37 @@ def parseListOfDict(array_dict, key_to_extract, toLower=False):
     else:
         return []
 
+
+def extract_hashtags(text_split):
+    # function to print all the hashtags in a text
+    # taken and modified from https://www.geeksforgeeks.org/python-extract-hashtags-from-text/
+    # initializing hashtag_list variable
+    hashtag_list = []
+    # get each word from the already split text
+    for word in text_split:
+        # checking the first character of every word
+        if word[0] == '#':
+            # adding the word to the hashtag_list
+            hashtag_list.append(word[1:])
+    return hashtag_list
+
 def preprocess_text(original_text):
     # Generic NLTK process taken from
     # https://spotintelligence.com/2022/12/21/nltk-preprocessing-pipeline/
-    pattern = r"(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?"
-    urls_removed = re.sub(pattern, "", original_text)
+    urls_removed = re.sub(PATTERN, "", original_text)
     trimmed_text = urls_removed.strip()
-    cleaned_text = " ".join(trimmed_text.split())
-    # we could use NLTK to get the tokens, but NLPyPort is an improvement on NLTK designed specifically for Portuguese
-    tokens = NLPyPort.new_full_pipe(cleaned_text, options = {"pre_load":True, "tokenizer":True}, config_list = NLPYPORT_CONFIG)
-    punctuation_filtered = [token for token in tokens if token not in string.punctuation]
-    lowercased = [token.lower() for token in punctuation_filtered]
-    stopwords_filtered = [token for token in lowercased if token not in BR_STOPWORDS]
+    #cleaned_text = " ".join(trimmed_text.split())
+    tokens = TKNZR.tokenize(trimmed_text)
+    #punctuation_filtered = [token for token in tokens if token not in string.punctuation]
+    #lowercased = [token.lower() for token in punctuation_filtered]
+    #stopwords_filtered = [token for token in lowercased if token not in BR_STOPWORDS]
+    #print(stopwords_filtered)
+    hash_list = extract_hashtags(tokens)
     # now we can use NLPyPort for POS tagging, lemmatisation, and named entity recognition
-    final_result = NLPyPort.new_full_pipe(stopwords_filtered, options = {"pre_load":True, }, config_list = NLPYPORT_CONFIG)
-    return final_result
+    #print("calling NLPYPORT")
+    #final_result = NLPyPort.new_full_pipe(stopwords_filtered, options = {"pre_load":True, }, config_list = NLPYPORT_CONFIG)
+    #print(final_result)
+    return tokens, hash_list
 
 def addExtraEntities(entities, extra_obj_key="retweeted_status", extended_key=None):
     # AUTHOR: Diogo Pacheco
@@ -90,6 +109,7 @@ def parseTweet(tw):
     entities = {
         '.'.join(k): safeget(tw,k) for k in (
             ('id_str',), 
+            ("text",), # KBH: added text field because we want to use it!
             ('user','id_str'),
             ('user','screen_name'),
             ('user','followers_count'),
@@ -139,6 +159,12 @@ def parseTweet(tw):
     
     extended_key = 'extended_tweet' if entities.get('truncated') else ''
     
+    # KBH: Modified to add text processing
+    #print(entities["text"])
+    processed_text, hash_list = preprocess_text(entities["text"])
+    entities["text"] = processed_text
+    entities["hashtags"] = hash_list
+    
     if entities.get('truncated'):
         entities['urls'] = parseListOfDict(entities.get('extended_tweet.entities.urls'), 'expanded_url')
         entities['hashtags'] = parseListOfDict(entities.get('extended_tweet.entities.hashtags'), 'text', toLower=True)
@@ -167,29 +193,29 @@ def parseTweet(tw):
     addExtraEntities(entities, extra_obj_key="retweeted_status", extended_key=extended_key)
     addExtraEntities(entities, extra_obj_key="quoted_status", extended_key=extended_key)
     
-#    if entities.get('retweeted_status.id_str'): # has a retweet
-#        extra = parseListOfDict(entities.get('retweeted_status.entities.urls',[]), 'expanded_url')
-#        if extra:
-#            entities['urls'] = entities.get('urls',[]) +  extra
-#        extra = parseListOfDict(entities.get('retweeted_status.entities.hashtags',[]), 'text', toLower=True)
-#        if extra:
-#            entities['hashtags'] = entities.get('hashtags',[]) + extra
-#        extra = parseListOfDict(entities.get('retweeted_status.entities.user_mentions',[]), 'id_str')
-#        if extra:
-#            entities['user_mentions_id_str'] = entities.get('user_mentions_id_str',[]) + extra
+    if entities.get('retweeted_status.id_str'): # has a retweet
+        extra = parseListOfDict(entities.get('retweeted_status.entities.urls',[]), 'expanded_url')
+        if extra:
+            entities['urls'] = entities.get('urls',[]) +  extra
+        extra = parseListOfDict(entities.get('retweeted_status.entities.hashtags',[]), 'text', toLower=True)
+        if extra:
+            entities['hashtags'] = entities.get('hashtags',[]) + extra
+        extra = parseListOfDict(entities.get('retweeted_status.entities.user_mentions',[]), 'id_str')
+        if extra:
+            entities['user_mentions_id_str'] = entities.get('user_mentions_id_str',[]) + extra
     
-#    if entities.get('quoted_status.id_str'): # has a quote
-#        extra = parseListOfDict(entities.get('quoted_status.entities.urls',[]), 'expanded_url')
-#        if extra:
-#            entities['urls'] = entities.get('urls',[]) +  extra
-#        extra = parseListOfDict(entities.get('quoted_status.entities.hashtags',[]), 'text', toLower=True)
-#        if extra:
-#            entities['hashtags'] = entities.get('hashtags',[]) + extra
-#        extra = parseListOfDict(entities.get('quoted_status.entities.user_mentions',[]), 'id_str')
-#        if extra:
-#            entities['user_mentions_id_str'] = entities.get('user_mentions_id_str',[]) + extra
-#        # adding quoted user to mention
-#        entities['user_mentions_id_str'] = entities.get('user_mentions_id_str',[]) + [entities.get('quoted_status.user.id_str')]
+    if entities.get('quoted_status.id_str'): # has a quote
+        extra = parseListOfDict(entities.get('quoted_status.entities.urls',[]), 'expanded_url')
+        if extra:
+            entities['urls'] = entities.get('urls',[]) +  extra
+        extra = parseListOfDict(entities.get('quoted_status.entities.hashtags',[]), 'text', toLower=True)
+        if extra:
+            entities['hashtags'] = entities.get('hashtags',[]) + extra
+        extra = parseListOfDict(entities.get('quoted_status.entities.user_mentions',[]), 'id_str')
+        if extra:
+            entities['user_mentions_id_str'] = entities.get('user_mentions_id_str',[]) + extra
+        # adding quoted user to mention
+        entities['user_mentions_id_str'] = entities.get('user_mentions_id_str',[]) + [entities.get('quoted_status.user.id_str')]
     
     # remove duplicated urls, hashtags, and mentions to users, mainly due to nested quoted and RT.
     entities['urls'] = list(set(entities['urls']))

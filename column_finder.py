@@ -19,9 +19,9 @@ def read_json(filename):
         data = pd.DataFrame(json.loads(line) for line in f)
         return data
 
-pkl_data_repro = pd.read_pickle("data/smalldata/elections2018_tweets-20180830_REPROCESSED.pkl.gz")
-pkl_data = pd.read_pickle("data/smalldata/elections2018_tweets-20180830.pkl")
-json_data = read_json("data/smalldata/elections2018_tweets-20180830.json")
+pkl_data_repro = pd.read_pickle("data/testdata/elections2022_tweets-20220701_REPROCESSED.pkl.gz")
+pkl_data = pd.read_pickle("data/testdata/elections2022_tweets-20220701.pkl.gz")
+json_data = read_json("data/testdata/elections2022_tweets-20220701.json")
 
 logging.info("")
 logging.info("PKL columns (REPRO):")
