@@ -36,48 +36,14 @@ def update_collocations(collocation_dict, hashtag_data, data, combination_size):
                     collocation_dict = disslib.increment_occurrence(collocation_dict, ", ".join(combination))
                 for hashtag in hashtags_list:
                     if hashtag in hashtag_data:
-                        current_list = hashtag_data[hashtag]
-                        current_list.append(int(id_str))
-                        hashtag_data[hashtag] = current_list
+                        current_set = hashtag_data[hashtag]
+                        current_set.add(int(id_str))
+                        hashtag_data[hashtag] = current_set
                     else:
-                        hashtag_data[hashtag] = [int(id_str)]
+                        hashtag_data[hashtag] = set([int(id_str)])
                     return hashtag_data
 
     return collocation_dict, hashtag_data
-
-def get_files(path_to_files):
-    if path_to_files.endswith("/"):
-        pkl_files = glob.glob(os.path.join(path_to_files, "*.pkl.gz"))
-        json_files = glob.glob(os.path.join(path_to_files, "*.json.gz"))
-        raw_filenames_pkl = [value.split(".")[0] for value in pkl_files]
-        raw_filenames_json = [value.split(".")[0] for value in json_files]
-        intersection_complement = set(raw_filenames_pkl) ^ set(raw_filenames_json)
-        if len(intersection_complement) != 0:
-            print("%d files found that have a JSON or PKL file, but not both:" % len(intersection_complement))
-            print(sorted(intersection_complement))
-            print("It is recommended to manually check these files and figure out what's happening.")
-            print("For now, we will remove them from processing...")
-            removed = 0
-            for file in intersection_complement:
-                json_name = file+".json.gz"
-                pkl_name = file+".pkl.gz"
-                if json_name in json_files:
-                    json_files.remove(json_name)
-                    removed += 1
-                if pkl_name in pkl_files:
-                    pkl_files.remove(pkl_name)
-                    removed += 1
-            print("Removed %d excess files." % removed)
-        if len(pkl_files) != len(json_files):
-            print("File amounts mismatch after attempted correction.")
-            print("PKL files: %d" % len(pkl_files))
-            print("JSON files: %d" % len(json_files))
-            exit()
-    else:
-        print("Please provide a directory containing pkl.gz and corresponding json.gz files.")
-        exit()
-
-    return sorted(pkl_files)
 
 def nicetime(start_time, end_time, just=True):
     if just:
@@ -88,8 +54,7 @@ def nicetime(start_time, end_time, just=True):
 def main(args):
     # ORIG. AUTHOR: Diogo Pacheco, modified KBH
     # heavily, heavily modified to run driver code for collocation processing
-    path_to_files = args[0]
-    pkl_files = get_files(path_to_files)
+    pkl_files, _ = disslib.get_tweet_files(args[0], pairs_only=True)
     
     if len(args) == 2:
         combination_size = int(args[1])
@@ -109,7 +74,7 @@ def main(args):
     collocation_dict = {}
     hashtag_data = {}
     
-    # the code after this point LOOKS LIKE A MESS
+    # i know the code after this point looks like a mess
     # but I promise it makes the terminal output really pretty
     # if you look closely it's just the prints that look crazy
     
@@ -147,11 +112,11 @@ def main(args):
         edges_writer = csv.writer(csv_handle, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         edges_writer.writerow(["Source", "Target", "Weight"])
         for (key, weight) in sorted_collocations:
-            if weight > 1000:
-                u, v = tuple(key.split(", "))
-                edges_writer.writerow([u, v, weight])
-                disslib.increment_occurrence(appearances_dict, u, weight)
-                disslib.increment_occurrence(appearances_dict, v, weight)
+            #if weight > 1000:
+            u, v = tuple(key.split(", "))
+            edges_writer.writerow([u, v, weight])
+            disslib.increment_occurrence(appearances_dict, u, weight)
+            disslib.increment_occurrence(appearances_dict, v, weight)
     print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Done.")
 
     print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Writing nodes csv...")

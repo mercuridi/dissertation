@@ -125,7 +125,7 @@ def get_tweet_files(dir_path, pairs_only):
         return pkl_json_pairs(pkl_files, json_files)
     else:
         print("Returning %d pkl files and %d json files." % len(pkl_files), len(json_files))
-        return pkl_files, json_files
+        return sorted(pkl_files), sorted(json_files)
 
 def pkl_json_pairs(pkl_files, json_files):
     raw_filenames_pkl = [value.split('.')[0] for value in pkl_files]
@@ -136,19 +136,13 @@ def pkl_json_pairs(pkl_files, json_files):
         print(intersection_complement)
         print("It is recommended to manually check these files and figure out what's happening.")
         print("For now, we will remove them from processing...")
-        for file in pkl_files:
-            if file.split('.')[0] in intersection_complement:
-                pkl_files.remove(file)
-                print("Removed file", file)
-        for file in json_files:
-            if file.split('.')[0] in intersection_complement:
-                json_files.remove(file)
-                print("Removed file", file)
+        pkl_files = [file for file in pkl_files if file.split('.')[0] not in intersection_complement]
+        json_files = [file for file in json_files if file.split('.')[0] not in intersection_complement]
         print("Removed excess files.")
     if len(pkl_files) != len(json_files):
         print("File amounts mismatch after attempted correction.")
-        print("PKL files: %d", len(pkl_files))
-        print("JSON files: %d", len(json_files))
+        print("PKL files: %d" % len(pkl_files))
+        print("JSON files: %d" % len(json_files))
         exit()
     print("Returning %d matched pkl and json files." % len(pkl_files))
-    return pkl_files, json_files
+    return sorted(pkl_files), sorted(json_files)
