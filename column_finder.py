@@ -1,9 +1,9 @@
 import logging
-import pickle
 import json
 import pandas as pd
+import disslib
 
-logging.basicConfig(filename='columns.log',  \
+logging.basicConfig(filename='logs/columns.log',  \
                 filemode = 'w+',          \
                 encoding='utf-8',         \
                 level=logging.DEBUG)
@@ -21,7 +21,13 @@ def read_json(filename):
 
 pkl_data_repro = pd.read_pickle("data/testdata/elections2022_tweets-20220701_REPROCESSED.pkl.gz")
 pkl_data = pd.read_pickle("data/testdata/elections2022_tweets-20220701.pkl.gz")
-json_data = read_json("data/testdata/elections2022_tweets-20220701.json")
+json_data = disslib.load_tweets_json("data/testdata/elections2022_tweets-20220806.json.gz")
+
+print(pkl_data)
+print(json_data)
+
+print(pkl_data["quoted_status.id_str"])
+print(pkl_data["retweeted_status.id_str"])
 
 logging.info("")
 logging.info("PKL columns (REPRO):")

@@ -5,15 +5,15 @@ import pandas as pd
 import spacy
 import pt_core_news_sm
 
-logging.basicConfig(filename='main.log',  \
+logging.basicConfig(filename='logs/sentiment.log',  \
                 filemode = 'w+',          \
                 encoding='utf-8',         \
                 level=logging.DEBUG)
 
 def main():
     start_time = time.time()
-    bot_id_strs = process_tweets_pkl('data/elections2018_tweets-20180830.pkl')
-    raw_data = process_tweets_json('data/elections2018_tweets-20180830.json', bot_id_strs)
+    bot_id_strs = process_tweets_pkl(pkl_file)
+    raw_data = process_tweets_json(json_file, bot_id_strs)
     sentilex = load_sentilex('data/sentilex.txt')
     nlp_start = time.time()
     nlp = load_pt_core()
@@ -25,25 +25,6 @@ def main():
     nlp_time = nlp_end - nlp_start
     logging.info("Time elapsed: %f", time_elapsed)
     logging.info("Of which NLP: %f", nlp_time)
-
-def process_tweets_pkl(filename):
-    logging.info("Processing pickle...")
-    obj = pd.read_pickle(filename)
-    #bots = obj.loc[obj['botscore'] > 0.7]
-    id_strs = set(obj["id_str"])
-    logging.info("Pickle processed. ID set size: %d", len(id_strs))
-    return id_strs
-
-def process_tweets_json(filename, bot_id_strs):
-    logging.info("Processing raw JSON data...")
-    raw_data = []
-    with open(filename, encoding='utf8') as json_file:
-        for line in json_file:
-            line_data = json.loads(line)
-            if line_data["id_str"] in bot_id_strs:
-                raw_data.append(line_data["text"])
-    logging.info("JSON processed.")
-    return raw_data
 
 def load_pt_core():
     logging.info("Loading Portuguese NLP library.")
@@ -68,10 +49,10 @@ def process_nlp(raw_data, nlp):
     logging.info("NLP processing complete: %d records.", len(nlp_processed))
     return nlp_processed
 
-def analyse_sentiment(all_data, sentilex):
+def analyse_sentiment(tweets, sentilex):
     logging.info("Beginning sentiment analysis...")
     sentiments = []
-    for tweet in all_data:
+    for tweet in tweets:
         tweet_sentiment = 0
         for word in tweet:
             try:
@@ -90,7 +71,4 @@ def analyse_sentiment(all_data, sentilex):
     logging.info("Sentiment analysis complete. Sample of first 10: %s", sample)
     logging.info("Average: %d", mean_sentiment)
     logging.info("Opinionated average: %d", sum(opinionated)/len(opinionated))
-
-print("Calling main driver function.")
-main()
-print("Main driver function complete. See log for details.")
+    return sentiments
