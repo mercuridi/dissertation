@@ -41,7 +41,6 @@ def update_collocations(collocation_dict, hashtag_data, data, combination_size):
                         hashtag_data[hashtag] = current_set
                     else:
                         hashtag_data[hashtag] = set([int(id_str)])
-                    return hashtag_data
 
     return collocation_dict, hashtag_data
 
@@ -87,12 +86,12 @@ def main(args):
         
         no_nan = base_data[base_data["hashtags"].notna()]
         no_retweets = no_nan[no_nan["retweeted_status.id_str"].isnull()]
-        no_quotes = no_retweets[no_retweets["quoted_status.id_str"].isnull()]
+        #no_quotes = no_retweets[no_retweets["quoted_status.id_str"].isnull()]
         nans_dropped = time.time()
-        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, nans_dropped)} | Dropped {len(base_data)-len(no_quotes)} bad rows in {nicetime(pkl_read, nans_dropped, False)}, leaving {len(no_quotes)} rows to process.")
-        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, nans_dropped)} |→ Base data: {len(base_data)}, no NaN: {len(no_nan)}, no retweets: {len(no_retweets)}, no quotes: {len(no_quotes)}")
+        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, nans_dropped)} | Dropped {len(base_data)-len(no_retweets)} bad rows in {nicetime(pkl_read, nans_dropped, False)}, leaving {len(no_retweets)} rows to process.")
+        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, nans_dropped)} |→ Base data: {len(base_data)}, no NaN: {len(no_nan)}, no retweets: {len(no_retweets)}")
         
-        update_collocations(collocation_dict, hashtag_data, no_quotes, combination_size)
+        update_collocations(collocation_dict, hashtag_data, no_retweets, combination_size)
         collocs_updated = time.time()
         print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, collocs_updated)} | Collocations updated in {nicetime(nans_dropped, collocs_updated, just=False)}")
     
@@ -135,5 +134,4 @@ def main(args):
     print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Done.")
 
 if __name__ == "__main__":
-    # AUTHOR: Diogo Pacheco
     main(sys.argv[1:])

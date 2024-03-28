@@ -12,13 +12,17 @@ logging.basicConfig(filename='logs/modularities.log',  \
 
 def main(args):
     modularity_data = pd.read_csv("data/collocations/2_hashtag_modularities_nodes.csv")
-    hashtags_ids = pickle.load("data/collocations/2_hashtag_tweetIDs.pkl")
+    nodes_999_data = pd.read_csv("data/collocations/2_hashtag_appearances_1000plus.csv")
+    with open("data/collocations/2_hashtag_tweetIDs.pkl", "rb") as hashtags_ids_pickle:
+        hashtags_ids = pickle.load(hashtags_ids_pickle)
     print(modularity_data)
     print(hashtags_ids)
     # get amount of unique modularities
     modularities = set(range(1, set(modularity_data["Modularity"].unique())+1))
     print(modularities)
-        
+    
+    # filter so we're only working with hashtags that appear over 999 times
+    
     # comb through all the json files which also have pkl files,
     # for each day, collect the tweets in each modularity group, then run 
     # toxicity and sentiment analysis on each tweet
