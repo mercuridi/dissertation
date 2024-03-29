@@ -7,7 +7,8 @@ import datetime as dt
 import disslib
 import numpy as np
 import nltk
-import stanza
+from multiprocessing import Pool
+from multiprocessing import freeze_support
 
 # set up logging
 logging.basicConfig(filename='logs/modularities.log',  \
@@ -77,7 +78,7 @@ def main(args):
     for index, json_file in enumerate(json_files):
         proc_start = time.time()
         filedate = pkl_file.split(".")[0].split("-")[1]
-        filename = "data/2_hashtag_stbm_/2_hashtag_stbm_" + filedate + ".csv"
+        filename = "data/2_hashtag_stbm/2_hashtag_stbm_" + filedate + ".csv"
         
         print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, proc_start)} | {filedate} | Now loading file pair: {json_file.split('.')[0]}")
         pkl_file = pkl_files[index]
