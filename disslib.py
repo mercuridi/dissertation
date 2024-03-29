@@ -17,6 +17,13 @@ from simpletransformers.classification import ClassificationModel
 
 URL_PATTERN = r"(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?"
 
+def safe_print(lock, index, file_digits, files_to_process, start_time, end_time, filedate, message):
+    lock.acquire()
+    try:
+        print(f"{str(index).rjust(file_digits)}/{files_to_process} | {nicetime(start_time, end_time)} | {filedate} | {message}")
+    finally:
+        lock.release()
+
 def preprocess_text(text_list, stopwords, pt_core):
     # pipeline from https://spotintelligence.com/2022/12/21/nltk-preprocessing-pipeline
     processed_list = []
