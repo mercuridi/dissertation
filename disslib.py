@@ -79,7 +79,7 @@ def nicetime(start_time, end_time):
     time_diff = int(end_time-start_time)
     if time_diff > 3600:
         hours   = str(time_diff // 3600)
-        minutes = str((time_diff - (hours * 3600)) // 60)
+        minutes = str((time_diff - (int(hours) * 3600)) // 60)
         seconds = str(time_diff % 60)
     elif time_diff > 60:
         hours   = "00"
@@ -89,6 +89,10 @@ def nicetime(start_time, end_time):
         hours   = "00"
         minutes = "00"
         seconds = str(time_diff)
+    if int(hours) < 10 and hours != "00":
+        hours = "0"+hours
+    if int(minutes) < 10 and minutes != "00":
+        minutes = "0"+minutes
     if int(seconds) < 10:
         seconds = "0"+seconds
     return (hours+":"+minutes+":"+seconds).rjust(9)
@@ -213,10 +217,10 @@ def pkl_json_pairs(pkl_files, json_files):
     raw_filenames_json = [value.split('.')[0] for value in json_files]
     intersection_complement = set(raw_filenames_pkl) ^ set(raw_filenames_json)
     if len(intersection_complement) != 0:
-        print("%d files found that have a JSON or PKL file, but not both:" % len(intersection_complement))
-        print(intersection_complement)
-        print("It is recommended to manually check these files and figure out what's happening.")
-        print("For now, we will remove them from processing...")
+        print("%d files found that have a JSON or PKL file, but not both." % len(intersection_complement))
+        #print(intersection_complement)
+        #print("It is recommended to manually check these files and figure out what's happening.")
+        #print("For now, we will remove them from processing...")
         pkl_files = [file for file in pkl_files if file.split('.')[0] not in intersection_complement]
         json_files = [file for file in json_files if file.split('.')[0] not in intersection_complement]
         print("Removed excess files.")

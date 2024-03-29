@@ -1,0 +1,346 @@
+id_str timestamp_ms quoted_status.id_str hashtags botscore sentiment toxicity
+1544894342548148224 1657166488669  "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.33 0 1
+1544894520160309248 1657166531015  "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.33 0 1
+1544894887979614208 1657166618710 1544740001908416515 "['foragenocida', 'prisãodomorojá', 'lulistas', 'cpidacovid', 'arasomisso', 'haddadgovernador', 'esquerdasegueesquerda', 'lula13']" 0.31 0 1
+1544895139205750785 1657166678607 1544713540078116875 "['lulanoprimeiroturno', 'lula13presidente']" 0.18 0 0
+1544895155190337538 1657166682418 1544663637511520256 "['lulanoprimeiroturno', 'desisteciro', 'lulaeoptnocombateafome', 'lulaeopteuvocebrasilinteirinho']" 0.39 -1 0
+1544895452683927552 1657166753346  "['foragenocida', 'prisãodomorojá', 'lulistas', 'cpidacovid', 'arasomisso', 'haddadgovernador', 'esquerdasegueesquerda', 'lula13']" 0.31 0 1
+1544895590508765185 1657166786206  "['brasilcombolsonaro', 'tamojunto']" 0.4 0 0
+1544896303804579842 1657166956269  "['lulapresidente13', 'bolsonaronacadeia']" 0.47666666666666674 0 1
+1544896558570917894 1657167017010 1544851964487700480 "['ptcc', 'ptnuncamais', 'ptepccjuntos', 'pccbraçoarmadodopt']" 0.24 0 0
+1544896672320339968 1657167044130  "['forabolsonaro', 'lulapresidente2022', 'bolsonaronuncamais', 'lulanoprimeiroturno']" 0.03 0 1
+1544896847516499968 1657167085900  "['hipócritasdesepulcroscaiados', 'lulaeoptreconstruirobrasil', 'lula13', 'partidodosmarinho']" 0.31 1 0
+1544898207498620928 1657167410145 1544884144722804737 "['alencarsantanadepfed', 'lulapresidente13', 'vamosjuntospelobrasil', 'haddadgovernadorsp']" 0.27 0 0
+1544899054982860800 1657167612201  "['globolixo', 'fakenews']" 0.49 0 0
+1544899517509779456 1657167722476  "['naotempraninguembolsonaronosso', 'bolsonaronoprimeiroturno']" 0.33 0 0
+1544901641954119681 1657168228983  "['bolsonaronuncamais', 'bolsonarovagabundo']" 0.42 -3 0
+1544903700078100481 1657168719678  "['freixocarreirinha', 'cpidoptepcc']" 0.23 -2 1
+1544904245459259393 1657168849707  "['maiorbandidodomundo', 'lulaladraoseulugarenaprisao', 'ptnuncamais']" 0.42 0 0
+1544905721971703808 1657169201735  "['vamosjuntospelobrasil', 'vamosjuntospelacultura', 'lulaeleitonoprimeiroturno', 'lula2022']" 0.11 0 0
+1544906247274725382 1657169326977  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544906295546888193 1657169338486  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544906482755444737 1657169383120  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544906682639196162 1657169430776  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544906779573747713 1657169453887  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 1
+1544906831381807119 1657169466239  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544906866144251907 1657169474527  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544906894527152129 1657169481294  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544906920267505667 1657169487431  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 1
+1544907041948450816 1657169516442  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544907158453686272 1657169544219  "['maiorbandidodomundo', 'lulaladraoseulugarenaprisao', 'ptnuncamais']" 0.42 -1 1
+1544907172533895168 1657169547576  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 -2 1
+1544907300837937152 1657169578166  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544907416948572160 1657169605849  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544907555763265536 1657169638945  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544907698365497344 1657169672944  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544907713234276352 1657169676489  "['vamosjuntospelobrasil', 'pegueos600evotenolula']" 0.28 0 0
+1544907850534817799 1657169709224  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 1 1
+1544907887629189121 1657169718068  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544907974040326145 1657169738670  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022']" 0.04 0 0
+1544907987025907713 1657169741766  "['bolsonaroreeleito2022', 'tarcisiogovernadorsp2022', 'ptpcc']" 0.24 0 1
+1544908462295072769 1657169855079  "['maiorbandidodomundo', 'lulaladraoseulugarenaprisao', 'cadeiaperpetuaparaolula', 'ptnuncamais']" 0.42 -2 1
+1544908469391790081 1657169856771  "['ladrãodemerenda', 'crime', 'pt', 'pcc', 'santodaodebrecht']" 0.38 0 1
+1544910919788118021 1657170440991  "['lulanoprimeiroturno', 'desisteciro']" 0.04 0 1
+1544911548669378562 1657170590928  "['lulavergonhadobrasil', '142urgente', '142já', 'chegadeativismojudicial', 'ptepccjuntos']" 0.11 -1 1
+1544912318571716609 1657170774487  "['ladrãodemerenda', 'crime', 'pt', 'pcc', 'santodaodebrecht']" 0.38 0 0
+1544912880356786177 1657170908427  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022', 'bolsonaroreeleitonoprimeiroturno', 'bolsonaronoprimeiroturno']" 0.13 0 0
+1544913123072778243 1657170966295  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022', 'bolsonaroreeleitonoprimeiroturno', 'bolsonaronoprimeiroturno']" 0.13 0 0
+1544913269856632832 1657171001291  "['bolsonaroreeleito2022', 'bolsonaroreeleitoem2022', 'bolsonaroreeleitonoprimeiroturno', 'bolsonaronoprimeiroturno']" 0.13 0 0
+1544914143479840768 1657171209579  "['lulaeleitonoprimeiroturno', 'bolsonaronacadeia']" 0.23 0 0
+1544915342228611074 1657171495383  "['bolsonaro22', 'bolsonaroreeleitoem2022', 'bolsonarotemrazao']" 0.6 -1 0
+1544915586387513344 1657171553595 1543292144181559297 "['enquetes', 'bolsonaroreeleitoem2022']" 0.36 0 1
+1544916217173000192 1657171703986 1543292144181559297 "['enquetes', 'bolsonaroreeleitoem2022']" 0.36 0 0
+1544917314189119488 1657171965535  "['vamosjuntospelobrasil', 'lulaeoptmeubrasildevolta']" 0.7233333333333333 1 0
+1544918772133380096 1657172313136 1543292144181559297 "['enquetes', 'bolsonaroreeleitoem2022']" 0.36 0 1
+1544918863942410242 1657172335025 1543292144181559297 "['enquetes', 'bolsonaroreeleitoem2022']" 0.36 0 0
+1544919096654962688 1657172390508  "['cpidomec', 'lira', 'bolsonaro']" 0.14 -1 1
+1544919117941116928 1657172395583  "['bolsonaroreeleito2022', 'lulavergonhadobrasil']" 0.33 -1 1
+1544919217245458434 1657172419259 1543292144181559297 "['enquetes', 'bolsonaroreeleitoem2022']" 0.36 0 1
+1544919467435622400 1657172478909 1543292144181559297 "['enquetes', 'bolsonaroreeleitoem2022']" 0.36 0 1
+1544919546011738112 1657172497643  "['lulavergonhadobrasil', 'bolsonaronoprimeiroturno']" 0.33 0 0
+1544919824601649152 1657172564064 1543292144181559297 "['enquetes', 'bolsonaroreeleitoem2022']" 0.36 0 0
+1544920791929815041 1657172794693  "['bolsonaro22', 'ptnuncamais']" 0.27 0 0
+1544920955902099456 1657172833787  "['bolsonaro2022', 'liberdade']" 0.2 1 0
+1544921799049322499 1657173034809  "['forabolsonaro', 'bolsonarojaperdeu']" 0.34 1 0
+1544923630336892929 1657173471422  "['brasil', 'presidentelula', 'avante', 'pt']" 0.34 0 0
+1544926040337702914 1657174046011  "['lulavergonhadobrasil', 'lulaladrao']" 0.33 0 1
+1544926673547808769 1657174196980  "['lulaladrao', 'novededosladrao']" 0.33 -1 0
+1544927755506257921 1657174454939  "['bolsonaroreeleito2022', 'bolsonarotemrazao']" 0.08 -1 0
+1544927868219686913 1657174481812  "['lulavergonhadobrasil', 'comunismoesmiseria', 'ptnuncamais', 'ptepccjuntos']" 0.11 0 1
+1544929209105076224 1657174801504 1544928650008690688 "['bolsonaroreeleito', 'semgentileza']" 0.27 0 1
+1544929513452322817 1657174874066 1544928650008690688 "['bolsonaroreeleito', 'semgentileza']" 0.27 0 0
+1544933295456227328 1657175775766 1544740315550126080 "['marcosuchoa', 'lula', 'jornalismo', 'uchoa', 'freixo']" 0.3866666666666667 0 1
+1544933356479328257 1657175790315  "['impeachmentmoraes', 'impeachmentbarroso']" 0.14 0 0
+1544933394857197569 1657175799465  "['bolsonaroreeleitonoprimeiroturno', 'bolsonaroreeleitoem2022']" 0.06 0 0
+1544934145712848898 1657175978483  "['lulanoprimeiroturno', 'lulaeoptmeubrasildevolta']" 0.33 2 0
+1544935817185214465 1657176376993  "['leader', 'president', 'luladasilva', 'polls', 'elections', 'brazil', 'bolsonaro']" 0.36 0 0
+1544939624031653889 1657177284616  "['bandido', 'penademorte', 'bolsonarotemrazao', 'adventista', 'progressista', 'assassino', 'ellenwhite', 'esquerdanuncamais', 'esquerdistasseguemesquerdistas', 'bandidobombandidomorto', 'bolsonaro22', 'bolsonaroreeleitoem2022', 'bolsonaroorgulhodobrasil']" 0.88 -2 1
+1544942191923142656 1657177896849 1544811697160036352 "['bolsonaroreeleitonoprimeiroturno', 'bolsonaroreeleitoem2022']" 0.37 0 0
+1544943294324637696 1657178159682  "['lulaparapresidente', 'semmedodeserfeliz', 'juntospelobrasil', 'lulalá2022', 'pt13', 'deus', 'abençoe']" 0.44 1 0
+1544943329653264384 1657178168105  "['forabolsonaro', 'lulaeleitonoprimeiroturno']" 0.55 0 1
+1544943502651531264 1657178209351  "['forabolsonaro', 'lulaeleitonoprimeiroturno']" 0.55 0 1
+1544944038721339396 1657178337160  "['lulaparapresidente', 'semmedodeserfeliz', 'juntospelobrasil', 'lulalá2022', 'pt13', 'deus', 'abençoe']" 0.33 1 0
+1544946804315258880 1657178996529  "['lulapresidente2022', 'lulala2022']" 0.5 0 0
+1544950129345568768 1657179789278  "['saianasruasluladrão', 'luladrão', 'saianasruasbandido']" 0.4 0 0
+1544950556036370433 1657179891009  "['saianasruasluladrão', 'luladrão', 'saianasruasbandido']" 0.39 0 1
+1544951599881150466 1657180139881  "['saianasruasluladrão', 'luladrão', 'saianasruasbandido']" 0.37 1 1
+1544952874379116545 1657180443745  "['bolsonaroblink', 'bolsonaroblackpink', 'blackpinkcomeback', 'bolsonaro2022', 'blackpink', 'blinkscombolsonaro', 'bolsonaro']" 0.83 0 0
+1544953623658041345 1657180622387  "['vamosjuntospelobrasil', 'lulapresidente', 'lula13', 'lulajá']" 0.34 0 0
+1544954807659675650 1657180904675  "['lulanacadeiaatemofar', 'luladrão', 'bolsonaronoprimeiroturno']" 0.06 -2 1
+1544956978379821056 1657181422215  "['ciroaunicavia', 'lulavergonhadobrasil', 'ciromerecerespeito', 'lulanuncamais']" 0.4 0 1
+1544957067789737985 1657181443532  "['lulaeoptbrasilsoberano', 'lulanoprimeiroturno', 'lulala', 'lulasim', 'lulaja', 'lulapresidente13', 'lula13presidente']" 0.58 1 0
+1544957997184589825 1657181665117  "['lulavergonhadobrasil', 'forabolsonaroesuaquadrilha']" 0.2 0 1
+1544958691669168129 1657181830695 1544753920576200704 "['bolsonaroreeleito2022', 'bolsonarotemrazao']" 0.17 0 0
+1544959244797091842 1657181962571  "['bolsonaroreeleito2022', 'bolsonaronoprimeiroturno']" 0.27 -2 1
+1544959811925774338 1657182097785  "['lulameupresidente', 'lulaeoptmeubrasildevolta', 'voltalula']" 0.55 0 1
+1544960086971392008 1657182163361  "['foragenocida', 'mudabrasil', 'shorts']" 0.23 -1 0
+1544960228977934342 1657182197218  "['lulavergonhadobrasil', 'lulaladraoseulugarenaprisao', 'ptnuncamais', 'lulanaoeinocentebabaca']" 0.1 0 1
+1544960451288743937 1657182250221  "['bolsonaroreeleito2022', 'bolsonaroreeleitonoprimeiroturno']" 0.17 0 1
+1544960468757794816 1657182254386  "['lulalá', 'voltameupresidente', 'voltalula']" 0.53 0 0
+1544960882492510208 1657182353028  "['bolsonaroreeleitonoprimeiroturno', 'bolsonaroreeleito2022']" 0.17 0 1
+1544961038361174017 1657182390190  "['foragenocida', 'mudabrasil']" 0.23 0 0
+1544961826634465280 1657182578129 1544818551751589889 "['marchaparajesus', 'psdbnuncamais', 'lulanuncamais', 'bolsonaro2022', 'tarcisiogovernadorsp', 'foracorruptos', 'ptnuncamais', 'esquerdalhasnuncamais', 'alckiminnuncamais', 'rogeriomarinho', 'bolsonaro']" 0.14 0 1
+1544961862202171392 1657182586609  "['foragenocida', 'mudabrasil']" 0.23 -1 0
+1544962020730191873 1657182624405 1544666462664679424 "['psdbnuncamais', 'lulanuncamais', 'bolsonaro2022', 'tarcisiogovernadorsp', 'foracorruptos', 'ptnuncamais', 'esquerdalhasnuncamais', 'alckiminnuncamais']" 0.14 0 1
+1544962344375164932 1657182701568 1544917708814385152 "['barrosomentiroso', 'stforganizacaocriminosa', 'lulaladrão']" 0.39 0 0
+1544962387647893504 1657182711885  "['corrupcaonacopa', 'petrolao', 'lulaebolsonarosaocriminosos', 'corrupcaonoitaquerao', 'mensalao', 'corrupcaonasolimpiadas']" 0.14 -2 0
+1544962638559551488 1657182771707 1544917708814385152 "['barrosomentiroso', 'stforganizacaocriminosa', 'lulaladrão']" 0.39 0 1
+1544962654443343872 1657182775494  "['foragenocida', 'mudabrasil', 'shorts']" 0.23 0 0
+1544963054378651648 1657182870846 1544917708814385152 "['stforganizacaocriminosa', 'lulaladrão']" 0.39 0 1
+1544963507048833029 1657182978771  "['lulapresidente', 'lulanoprimeiroturno', 'lula2022']" 0.01 0 0
+1544965747650297857 1657183512972 1544934789421096960 "['vamosjuntospelobrasil', 'lulanoprimeiroturno', 'lulaeoptmeubrasildevolta']" 0.13 0 0
+1544966222831407104 1657183626264  "['lulanoprimeiroturno', 'lula13presidente']" 0.04 0 0
+1544966838592962560 1657183773073  "['lulanacadeia', 'lulanaoeinocentebabaca']" 0.38 0 1
+1544967354873962498 1657183896164  "['barrosomentiroso', 'stforganizacaocriminosa', 'lulaladrão']" 0.39 0 0
+1544967597506138113 1657183954012  "['stforganizacaocriminosa', 'lulaladrão']" 0.39 0 0
+1544967801424707584 1657184002630 1544483082245382144 "['psdbnuncamais', 'lulanuncamais', 'bolsonaro2022', 'tarcisiogovernadorsp', 'foracorruptos', 'ptnuncamais', 'esquerdalhasnuncamais', 'alckiminnuncamais']" 0.14 0 1
+1544969794440552448 1657184477802  "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.17 0 1
+1544969881531072513 1657184498566  "['lulanacadeiaatemofar', 'lulavergonhadobrasil', 'lulaladraoseulugarenaprisao']" 0.55 1 1
+1544970096732504064 1657184549874  "['lulanoprimeiroturno', 'lulaeoptmeubrasildevolta']" 0.49 0 1
+1544971977768697858 1657184998348  "['lulanoprimeiroturno', 'lulaeoptmeubrasildevolta']" 0.49 0 1
+1544972362470363136 1657185090068 1544316323815202819 "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.5 0 0
+1544972720219295744 1657185175362  "['lulanoprimeiroturno', 'lulaeoptmeubrasildevolta']" 0.49 0 1
+1544973074189230081 1657185259755  "['nftcommunity', 'goodmorning', 'eleicoes2022', 'nftgiveaway', 'bolsolaodomec', 'lulaeleitonoprimeiroturno', 'photo', 'dolar']" 0.29 1 0
+1544973188257710080 1657185286951 1544973074189230081 "['nftcommunity', 'goodmorning', 'eleicoes2022', 'bolsolaodomec', 'lulaeleitonoprimeiroturno']" 0.4 0 0
+1544973192573370370 1657185287980 1544973074189230081 "['nftcommunity', 'goodmorning', 'eleicoes2022', 'bolsolaodomec', 'lulaeleitonoprimeiroturno']" 0.54 0 0
+1544973218246787072 1657185294101  "['somostodosbolsonaro', 'lulanuncamais']" 0.27 0 1
+1544973278183563266 1657185308391 1544973074189230081 "['nftcommunity', 'goodmorning', 'eleicoes2022', 'bolsolaodomec', 'lulaeleitonoprimeiroturno']" 0.49 0 0
+1544973360945278976 1657185328123 1544963852420382720 "['donaldtrump', 'borisjohnson', 'bolsonaro', 'duterte']" 0.36 0 0
+1544974265933598721 1657185543889  "['seraumacilada', 'quemmandoumatarcelsodaniel', 'quemmandoumatarbolsonaro']" 0.18 0 0
+1544974425291952129 1657185581883  "['edicao6', 'bolsonaroorgulhodobrasil']" 0.0 0 0
+1544975656102002688 1657185875331  "['bolsonaroreeleitonoprimeiroturno', 'lulanacadeia', 'bolsonarotemrazao', 'lulaeoptdestruiramobrasil', 'bolsonaro22', 'bolsonaroreeleito2022', 'lulaladraoseulugarenaprisao', 'bolsonaroorgulhodobrasil']" 0.31 0 1
+1544975735387000832 1657185894234  "['bolsonaroreeleitonoprimeiroturno', 'lulanacadeia', 'bolsonarotemrazao', 'lulaeoptdestruiramobrasil', 'bolsonaro22', 'bolsonaroreeleito2022', 'lulaladraoseulugarenaprisao', 'bolsonaroorgulhodobrasil']" 0.31 0 1
+1544975814797791232 1657185913167  "['bolsonaroreeleitonoprimeiroturno', 'lulanacadeia', 'bolsonarotemrazao', 'lulaeoptdestruiramobrasil', 'bolsonaro22', 'bolsonaroreeleito2022', 'lulaladraoseulugarenaprisao', 'bolsonaroorgulhodobrasil']" 0.31 0 1
+1544975976966356992 1657185951831  "['vamosjuntospelobrasil', 'lulanoprimeiroturno', 'lula13presidente']" 0.44 1 0
+1544976404177117184 1657186053686  "['bolsonaroreeleito2022', 'lulaladrao', 'globolixo', 'bolsonarotemrazao']" 0.2 1 0
+1544976924727967744 1657186177795  "['lulanacadeia', 'quemmandoumatarcelsodaniel', 'quemmandoumatarbolsonaro', 'lulanaoeinocentebabaca', 'cpidoptepcc']" 0.09 0 1
+1544977201266933761 1657186243727  "['lulavergonhadobrasil', 'lulanuncamais', 'ptnuncamais', 'ptepccjuntos']" 0.37 0 0
+1544977319487578112 1657186271913  "['lulanacadeia', 'cpidoptepcc', 'quemmandoumatarcelsodaniel', 'quemmandoumatarbolsonaro']" 0.09 0 0
+1544977398206238721 1657186290681  "['lulaladraoseulugarenaprisao', 'lulaladrão']" 0.15 0 1
+1544977496692719616 1657186314162  "['forabolsonaro', 'lulanoprimeiroturno', 'lula13presidente']" 0.04 1 1
+1544977537629134848 1657186323922  "['shopee77', 'bolsonaroreeleitoem2022']" 0.3 0 0
+1544977888700661760 1657186407624  "['lulanacadeia', 'quemmandoumatarcelsodaniel', 'quemmandoumatarbolsonaro', 'luladrao', 'cpidoptepcc']" 0.09 0 1
+1544978535680540674 1657186561876  "['bolsonaroreeleitoem2022', 'bolsonarotemrazao']" 0.3 1 0
+1544978607361196032 1657186578966 1544977537629134848 "['shopee77', 'bolsonaroreeleitoem2022']" 0.3 0 0
+1544979497526722560 1657186791198  "['ptnuncamais', 'luladrao']" 0.47 0 1
+1544979631819919362 1657186823216  "['globolixo', 'globonuncamais']" 0.06 -1 1
+1544979861843877888 1657186878058  "['ptnuncamais', 'ptepccjuntos']" 0.545 0 1
+1544980206968098817 1657186960342  "['ptnuncamais', 'ptepccjuntos']" 0.545 0 1
+1544980551223885827 1657187042419  "['ptnuncamais', 'ptepccjuntos']" 0.545 0 1
+1544981178997870600 1657187192092  "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.1 0 0
+1544981461719293954 1657187259498  "['vamosjuntospelobrasil', 'desisteciro']" 0.17 0 0
+1544982540364161027 1657187516667  "['bolsonaroreeleitonoprimeiroturno', 'lulavergonhadobrasil', 'luladrao']" 0.26 -1 1
+1544983047908560898 1657187637675  "['bolsonaroblink', 'bolsonaroblackpink', 'blackpinkcomeback', 'bolsonaro2022', 'blackpink', 'blinkscombolsonaro', 'bolsonaro']" 0.54 0 0
+1544983961931235330 1657187855595  "['stfaservicodocrimeorganizado', 'stforganizacaocriminosa']" 0.44 -1 1
+1544984294883483652 1657187934977 1544871039477456904 "['bolsonaroreeleitoem2022', 'globolixo', 'sbtlibertadores']" 0.3 -1 0
+1544984523691200513 1657187989529  "['stfvergonhamundial', 'bolsonaroreeleitoem2022', 'stforganizacaocriminosa', 'stfvergonhanacional']" 0.44 0 0
+1544984533656899585 1657187991905 1544509816495906818 "['jornaldamanha', 'stfrompeuademocracia', 'stfnãomerepresenta', 'ospingosnosis', '3em1']" 0.27 0 0
+1544984549192597506 1657187995609  "['esquerda', 'pdt']" 0.08 0 0
+1544984557933527041 1657187997693  "['pcc', 'sãopaulo']" 0.44 0 0
+1544984970300620800 1657188096009  "['lulavergonhadobrasil', 'bolsonaronoprimeiroturno']" 0.2 0 1
+1544984986369114115 1657188099840  "['cirotraíra', 'lulaeleitonoprimeiroturno', 'lulanoprimeiroturno', 'lula13presidente']" 0.31 0 0
+1544985102299631618 1657188127480  "['lulaeleitonoprimeiroturno', 'lulaeoptmeubrasildevolta']" 0.7233333333333333 1 0
+1544985135073968128 1657188135294  "['stfvergonhamundial', 'stfvergonhanacional']" 0.31 0 1
+1544985154258608131 1657188139868  "['bolsonaroreeleito2022', 'bolsonaro22', 'bolsonaronoprimeiroturno']" 0.34 0 0
+1544986863764733952 1657188547446  "['vamosjuntospelobrasil', 'vamosjuntospelorio']" 0.2 1 0
+1544987219135500289 1657188632173  "['stforganizacaocriminosa', 'stfvergonhanacional']" 0.48 0 0
+1544987527152603137 1657188705610  "['bolsonaroreeleito2022', 'lulanacadeia', 'esquerdacriminosa', 'lulaladraoseulugarenaprisao']" 0.3 0 1
+1544987921928884224 1657188799732 1544980588234522625 "['esquerdanuncamais', 'esquerdacriminosa']" 0.12 1 1
+1544988116196495362 1657188846049  "['forabolsonaroesuaquadrilha', 'gadozumbi']" 0.33 0 1
+1544988368894828546 1657188906297  "['bolsonaroreeleito2022', 'lulaladraoseulugarenaprisao', 'esquerdacriminosa', 'lulanuncamais']" 0.3 0 1
+1544988397818757120 1657188913193  "['soulula', 'lulanoprimeiroturno', 'lula13presidente', 'lulainocente']" 0.02 1 1
+1544988549904273411 1657188949453  "['lulapresidente13', 'lulapresidente2022', 'lulanoprimeiroturno']" 0.02 0 0
+1544988626337021952 1657188967676  "['bolsonaroreeleitonoprimeiroturno', 'deus']" 0.05 1 0
+1544988681735487488 1657188980884  "['forabolsonaroesuaquadrilha', 'gadozumbi']" 0.33 0 1
+1544988707870097409 1657188987115  "['vamosjuntospelobrasil', 'vamosjuntospelorio']" 0.7816666666666666 0 1
+1544988777059389440 1657189003611  "['é13', 'lulanoprimeiroturno']" 0.4 0 1
+1544988823205158912 1657189014613  "['ptcc', 'quemmandoumatarcelsodaniel', 'bolsonaro2022', 'ptepccjuntos', 'lulaladrao']" 0.3 0 0
+1544988871993298945 1657189026245  "['soulula', 'lulanoprimeiroturno', 'lula13presidente', 'lulainocente']" 0.02 1 1
+1544989162348183552 1657189095471  "['ptpccnuncamais', 'ptnuncamais', 'laluladraoseulugarenaprisao']" 0.2 0 1
+1544989456494632961 1657189165601  "['bolsonaroreeleito', 'bolsonaro22', 'bolsonaroorgulhodobrasil']" 0.77 1 0
+1544989459774672898 1657189166383  "['forabolsonaroesuaquadrilha', 'gadozumbi']" 0.33 0 1
+1544989575629651968 1657189194005  "['forabolsonaro', 'lula', 'repostandroid', 'cirogomes', 'ciro12', 'repostw10', 'repost', 'rebeldiadaesperanca', 'ciro2022', 'aunicavia', 'bolsonaro']" 0.14 0 0
+1544989644810600449 1657189210499  "['bolsonaroreeleitoem2022', 'quemmandoumatarcelsodaniel', 'lulaladrao', 'ptepccjuntos']" 0.3 0 1
+1544989774955659264 1657189241528  "['cpidomec', 'lulaeleitonoprimeiroturno', 'lulanoprimeiroturno']" 0.17 2 0
+1544990146642288641 1657189330145  "['lulanoprimeiroturno', 'lulasim', 'lulaladraorouboumeucoracao', 'lula13presidente', 'lula13']" 0.07 0 0
+1544990149691539456 1657189330872  "['lulanoprimeiroturno', 'lulasim', 'lulaladraorouboumeucoracao', 'lula13presidente', 'lula13']" 0.07 0 0
+1544990407003619330 1657189392220  "['cpidomec', 'andremendonçacapacho', 'forafamiliciabolsonaro', 'mariofriasbabaca', 'justicapordomebrunoemaxciel', 'forabolsonaroesuaquadrilha', 'boicoteahavan', 'bolsonaronacadeia', 'michellebolsonarofingida', 'nunesmarquesvassalo', 'taradosnacaixa', 'funaiécontraindio']" 0.35 0 1
+1544990493838348288 1657189412923  "['bolsonaroreeleitonoprimeiroturno', 'deus']" 0.05 1 0
+1544990666983366656 1657189454204  "['lulanoprimeiroturno', 'lulanacinelandia']" 0.51 0 0
+1544991115903963136 1657189561235  "['cpidomec', 'editorial', 'eleiçoes2022']" 0.0 0 0
+1544991249857404929 1657189593172  "['lulaeleitonoprimeiroturno', 'lulaeopteuvocebrasilinteirinho']" 0.19 1 0
+1544991497749204993 1657189652274  "['lulavergonhadobrasil', 'luladrao']" 0.22 0 1
+1544991685746331660 1657189697096  "['lulaeleitonoprimeiroturno', 'lulanoprimeiroturno']" 0.39 0 0
+1544991731137105927 1657189707918  "['bolsonaro2022', 'ptnuncamais']" 0.22 0 1
+1544991821675331591 1657189729504  "['mdbnuncamais', 'psdbnuncamais', 'demnuncamais', 'psdnuncamais', 'ptnuncamais']" 0.05 0 1
+1544991832060354560 1657189731980  "['bolsonaroreeleitoem2022', 'simbora']" 0.5133333333333333 0 0
+1544992053796503552 1657189784846  "['cpidomec', 'andremendonçacapacho', 'prfassassina', 'forafamiliciabolsonaro', 'mariofriasbabaca', 'justicapordomebrunoemaxciel', 'forabolsonaroesuaquadrilha', 'boicoteahavan', 'bolsonaronacadeia', 'michellebolsonarofingida', 'nunesmarquesvassalo', 'taradosnacaixa', 'funaiécontraindio']" 0.35 0 1
+1544992060264091648 1657189786388  "['lulanoprimeiroturno', 'pegueos600evotenolula']" 0.51 0 0
+1544992269983416320 1657189836389  "['lulanoprimeiroturno', 'lula2022']" 0.07 0 0
+1544992372831961094 1657189860910  "['bolsonaroreeleitoem2022', 'simbora']" 0.5133333333333333 0 0
+1544992546232975360 1657189902252  "['lulavergonhadobrasil', 'lulanacadeia', 'lulanuncamais']" 0.28 0 1
+1544992749644124162 1657189950749  "['vamosjuntospelobrasil', 'lulaeoptmeubrasildevolta']" 0.19 1 0
+1544992786000257029 1657189959417  "['lulanoprimeiroturno', 'lulaeopteuvocebrasilinteirinho']" 0.51 1 0
+1544992950010216449 1657189998520  "['cpidomec', 'andremendonçacapacho', 'prfassassina', 'forafamiliciabolsonaro', 'mariofriasbabaca', 'justicapordomebrunoemaxciel', 'forabolsonaroesuaquadrilha', 'boicoteahavan', 'bolsonaronacadeia', 'michellebolsonarofingida', 'nunesmarquesvassalo', 'taradosnacaixa', 'funaiécontraindio']" 0.35 0 1
+1544993071607291907 1657190027511  "['lulaladrao', 'ptnuncamais']" 0.3 0 1
+1544994026323058690 1657190255133  "['bolsonaroreeleitoem2022', 'bolsonaronoprimeiroturno']" 0.68 -1 0
+1544994378812383234 1657190339173  "['lulapreso', 'ptnuncamais']" 0.27 0 0
+1544994458290343936 1657190358122 1544993684390821888 "['forabolsonaro', 'impeachmentbolsonaro', 'jairbolsonaro', 'somos70porcento', 'ditaduranuncamais', 'lula13presidente', 'lula13']" 0.24 0 1
+1544994474744479744 1657190362045  "['lulanacinelandia', 'lulaeopteuvocebrasilinteirinho']" 0.51 1 1
+1544994912852131841 1657190466498  "['lulanacinelandia', 'lulaeopteuvocebrasilinteirinho']" 0.51 0 0
+1544994961669619713 1657190478137  "['forabolsonaroesuaquadrilha', 'gadozumbi']" 0.32 0 1
+1544995292302479362 1657190556966  "['lulaladraoseulugarenaprisao', 'ptepccjuntos']" 0.1 -1 1
+1544995869346471936 1657190694544 1501660903506423812 "['bolsonaro2022', 'mesdamulher']" 0.2 0 0
+1544995989001584641 1657190723072  "['lulaeleitonoprimeiroturno', 'forabolsonaroesuaquadrilha']" 0.23 0 1
+1544996310058778625 1657190799618  "['forabolsonaro', 'impeachmentbolsonaro', 'jairbolsonaro', 'somos70porcento', 'ditaduranuncamais']" 0.24 0 0
+1544996319797710848 1657190801940 1544991475813044224 "['bolsonaroreeleito2022', 'bolsonaronoprimeiroturno']" 0.16 0 0
+1544996891091427331 1657190938147  "['luladrao', 'ptnuncamais', 'ptepccjuntos']" 0.45 0 1
+1544996931688140800 1657190947826  "['lulaeleitonoprimeiroturno', '13elevoltara']" 0.69 2 0
+1544997049862684673 1657190976001  "['lulaeleitonoprimeiroturno', 'pegueos600evotenolula']" 0.4683333333333334 0 0
+1544997287038001155 1657191032548 1540473372638941186 "['lulatadisparado', 'lulanoprimeiroturno']" 0.11 -1 0
+1544997472472293376 1657191076759  "['forabolsonaro', 'esquerdaarticulada']" 0.1 0 0
+1544997523538026498 1657191088934 1544642130634760193 "['ptepccjuntos', 'quemmandoumatarcelsodaniel']" 0.29 0 0
+1544997621139488768 1657191112204  "['vamosjuntospelobrasil', 'lulanoprimeiroturno', 'lulaeoptmeubrasildevolta', 'lulaeoptnocombateafome']" 0.28 0 0
+1544998027773050884 1657191209153  "['stfvergonhanacional', 'impeachmentalexandredemoraes']" 0.29 0 0
+1544998146803175424 1657191237532  "['bolsonaro22', 'bolsonaronoprimeiroturno']" 0.37333333333333335 1 0
+1544998198359597056 1657191249824  "['lulanoprimeiroturno', 'lulanorio']" 0.36 1 0
+1544998242424950786 1657191260330  "['forabolsonaro', 'lulanacadeia']" 0.5 0 0
+1544998569945473025 1657191338417 1544668562828189698 "['borapt', 'lulapresidente', 'lula13presidente']" 0.39 0 0
+1544998592468885506 1657191343787  "['lulanacinelandia', 'lulaeopteuvocebrasilinteirinho']" 0.51 0 1
+1544998623766843392 1657191351249  "['lulapresidente', 'euquerovê']" 0.32 0 1
+1544998678255075328 1657191364240  "['lulavergonhadobrasil', 'luladrao', 'ptepccjuntos']" 0.29 0 1
+1544998978474893315 1657191435818  "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.44 1 0
+1544999043797073922 1657191451392  "['lulapresidente', 'euquerovê']" 0.45 0 1
+1544999087249956865 1657191461752 1544813237312667650 "['em2022bolsonaro22', 'pbolsonaro1ºturno', 'bolsonaroorgulhodobrasil']" 0.09 3 0
+1544999135580921856 1657191473275  "['bolsonaroreeleitonoprimeiroturno', 'deus']" 0.05 1 0
+1544999137128620032 1657191473644  "['lulavergonhadobrasil', 'bolsonaroreeleitoem2022', 'lulanuncamais']" 0.11 0 0
+1544999451210678272 1657191548527 1544800602655543300 "['lulanoprimeiroturno', 'lula2022', 'lulapresidente2022', 'lulapresidente13', 'lula13presidente']" 0.04 0 0
+1544999682828652544 1657191603749 1544740315550126080 "['marcosuchoa', 'lula', 'jornalismo', 'uchoa', 'freixo']" 0.05 0 1
+1544999719944044548 1657191612598  "['lulapresidente13', 'lulanoprimeiroturno', 'lulapresidente2022']" 0.28 0 0
+1544999782195806209 1657191627440  "['mdbrn', 'garibaldif', 'pontodeequilíbrio', 'mdb']" 0.38 0 0
+1545000074916265985 1657191697230  "['bolsonaroreeleitoem2022', 'bolsonaronoprimeiroturno']" 0.6033333333333333 1 0
+1545000185452969985 1657191723584  "['lulanoprimeiroturno', 'lulanacinelandia', 'lulaeopteuvocebrasilinteirinho']" 0.51 1 0
+1545000297612845059 1657191750325  "['cpidomec', 'lulaeleitonoprimeiroturno', 'lulanoprimeiroturno']" 0.17 1 0
+1545000325035298816 1657191756863  "['bolsonaroorgulhodobrasil', 'bolsonaroreeleitoem2022', 'bolsonaronoprimeiroturno']" 0.04 -1 0
+1545000499417587713 1657191798439 1544693757467033600 "['pecsuprema', 'pauloguedestemrazao', 'tarcisiogovernador2022', 'bolsonaroreeleito2022']" 0.55 0 0
+1545000552307769344 1657191811049  "['lulapresidente', 'euquerovê']" 0.14 0 1
+1545001041376280577 1657191927652  "['lulanoprimeiroturno', 'lula13presidente', 'lula13']" 0.11 1 0
+1545001396038246402 1657192012210  "['bolsonaro2022', 'direitaforte', 'bolsonaronoprimeiroturno', 'patriotas', 'bolsonaroreeleitoem2022', 'bolsonaroorgulhodobrasil']" 0.41 0 0
+1545001522018357251 1657192042246  "['lulaeoptdestruiramobrasil', 'ptnuncamais']" 0.42 0 1
+1545001700242739205 1657192084738  "['lulaeleitonoprimeiroturno', 'pegueos600evotenolula']" 0.47833333333333333 1 0
+1545001787303788545 1657192105495  "['lulavergonhadobrasil', 'lulaladrao']" 0.31 0 0
+1545001885056307202 1657192128801  "['vamosjuntospelobrasil', 'lulaeleitonoprimeiroturno']" 0.21 2 0
+1545002226812346369 1657192210282  "['lulaeoptdestruiramobrasil', 'ptnuncamais']" 0.42 0 0
+1545002240150327296 1657192213462 1544851964487700480 "['ptnuncamais', 'lulaladrão', 'lulaladraoseulugarenaprisao', 'lulaladrao', 'cpidoptepcc']" 0.21 0 1
+1545002435994914816 1657192260155  "['bolsonarocorrupto', 'bolsonarogenocida']" 0.06 0 1
+1545002459742994434 1657192265817 1544855889546543105 "['cpidomecja', 'lulanoprimeiroturno']" 0.29 0 1
+1545003133432119309 1657192426437  "['bolsonaroreeleitonoprimeiroturno', 'deus']" 0.05 1 0
+1545003173831708673 1657192436069  "['ciro2022', 'lula13presidente']" 0.32 -1 0
+1545003670667927552 1657192554524 1544740315550126080 "['marcosuchoa', 'lula', 'jornalismo', 'uchoa', 'freixo']" 0.15 -2 0
+1545003783406723072 1657192581403  "['lula2022', 'lula']" 0.34 0 0
+1545004080094912513 1657192652139 1545001144946155521 "['lula13éamelhoropção', 'lulaeleitonoprimeiroturno', 'lulanoprimeiroturno', 'lula13presidente']" 0.26 0 0
+1545004159119802369 1657192670980 1544931843417329664 "['sdvdireita', 'cpidoptepcc', 'bolsonaronoprimeiroturno']" 0.37 0 0
+1545004320093093888 1657192709359 1544695727712092162 "['bolsonaro', 'lula']" 0.1 -2 1
+1545004339583979526 1657192714006  "['bolsonaroreeleitonoprimeiroturno', 'deus']" 0.05 1 0
+1545004377919963136 1657192723146  "['haddadgovernadorsp', 'lulapresidente']" 0.61 -1 0
+1545004735270363138 1657192808345 1544685821403570176 "['lula', 'traidoresdobrasil', 'faa', 'exércitobrasileiro', 'bolsonaro']" 0.11 0 0
+1545004829151576066 1657192830728 1544696170609610752 "['traidoresdobrasil', 'poderdata', 'faa', 'exércitobrasileiro', 'bolsonaro']" 0.11 0 0
+1545004953567207427 1657192860391  "['brasil', 'icms', 'combustível', 'bolsonaro']" 0.47 0 0
+1545005024002072578 1657192877184  "['haddadgovernadorsp', 'lulanoprimeiroturno']" 0.31 0 0
+1545005064577761281 1657192886858  "['lulanoprimeiroturno', 'lula13presidente', 'lula2022']" 0.27 0 0
+1545005224204681216 1657192924916  "['lulanacinelândia', 'pegueos600evotenolula', 'vamosjuntospelobrasil']" 0.65 0 0
+1545005354731376642 1657192956036  "['bolsonaroreeleitoem2022', 'bolsonaronoprimeiroturno']" 0.04 0 0
+1545005516669206528 1657192994645  "['vamosjuntospelobrasil', 'lulanoprimeiroturno', 'forabolsonaroesuaquadrilha']" 0.15 1 0
+1545005758475128832 1657193052296  "['lulanoprimeiroturno', 'lula13presidente', 'lula2022']" 0.27 0 0
+1545005944874143744 1657193096737 1544776566760144897 "['lulaeleitonoprimeiroturno', 'lulanoprimeiroturno', 'lula13presidente']" 0.26 0 0
+1545005984413777922 1657193106164  "['haddadgovernadorsp', 'lulapresidente']" 0.61 0 1
+1545005987299528708 1657193106852 1543993154206158849 "['lulanoprimeiroturno', 'forabolsonaroesuaquadrilha', 'lula13presidente']" 0.45 0 0
+1545005994517856258 1657193108573 1544819164627492864 "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.41 0 0
+1545006119814397954 1657193138446  "['trump', 'brasil', 'lula']" 0.24 0 0
+1545006202756669440 1657193158221  "['haddadgovernadorsp', 'lulapresidente']" 0.61 1 1
+1545006214404345856 1657193160998 1544894998327566338 "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.41 0 0
+1545006230258626561 1657193164778  "['ptnuncamais', 'ptepccjuntos', 'pccbraçoarmadodopt']" 0.12 0 1
+1545006280460435458 1657193176747  "['bolsonarotemrazao', 'bolsonaro2022', 'bolsonaro2022novamente', 'brasilacimadetudoe', 'bolsonaropresidente2022', 'bolsonaroreeleito2022', 'patriaamadabrasil']" 0.15 0 0
+1545006343714652166 1657193191828 1544811882753785857 "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.41 0 0
+1545006419258347521 1657193209839 1544414985182404608 "['lulavergonhadobrasil', 'lulanacadeia', 'equipelula', 'luladrao']" 0.39 0 1
+1545006472580456450 1657193222552 1544995527904862210 "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.41 0 0
+1545006523969069057 1657193234804 1544677135293599746 "['lula13presidente', 'cironosbt']" 0.29 0 0
+1545006598363512832 1657193252541  "['stfvergonhamundial', 'bolsonaronoprimeiroturno']" 0.17 0 0
+1545006668894937088 1657193269357 1544856785542168576 "['lula13éamelhoropção', 'lulaeleitonoprimeiroturno', 'lulanoprimeiroturno', 'lula13presidente']" 0.26 0 0
+1545006746946703360 1657193287966  "['lulalá', 'ricardo', 'venécá']" 0.13 0 1
+1545006747366166530 1657193288066  "['lula', 'rt', 'lula2022', 'lula13éamelhoropção', 'forabolssonaro']" 0.19 0 1
+1545006837174616064 1657193309478  "['lulaladrao', 'ptnuncamais']" 0.19 -1 1
+1545006925519196164 1657193330541  "['cpidoptepcc', 'ptepccjuntos']" 0.21 0 1
+1545007232223420416 1657193403665 1544778839448031233 "['lulaeoptdestruiramobrasil', 'ptnuncamais']" 0.42 0 1
+1545007252863590401 1657193408586 1544859047144333313 "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.41 0 1
+1545007478361956363 1657193462349  "['lulanoprimeiroturno', 'lulanorio']" 0.27 0 0
+1545007635367432193 1657193499782  "['bolsonaroreeleitonoprimeiroturno', 'brasilcombolsonaro', 'cpidoptepcc', 'bolsonaroorgulhodobrasil']" 0.29 0 1
+1545008083092606976 1657193606528  "['cpidomec', 'lulanoprimeiroturno', 'lula13presidente']" 0.17 -1 1
+1545008226537709569 1657193640728 1544845496208031750 "['lulaeleitonoprimeiroturno', 'pegueos600evotenolula']" 0.21 -1 0
+1545008367961313280 1657193674446  "['lulanoprimeiroturno', 'abraço']" 0.27 -1 1
+1545008468620460032 1657193698445  "['lulanoprimeiroturno', 'eleições2022']" 0.54 0 0
+1545008571565367296 1657193722989 1544997939478761472 "['forabolsonaro', 'lula2022']" 0.59 0 0
+1545008589777113096 1657193727331  "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.41 0 0
+1545008602649432067 1657193730400  "['bolsominion', 'b22', 'bozonaro']" 0.37 -2 0
+1545008864571150337 1657193792847  "['cpidomec', 'lulanoprimeiroturno']" 0.27 0 1
+1545009024168599554 1657193830898 1544695727712092162 "['bolsonaro', 'lula']" 0.26 -1 0
+1545009238098968576 1657193881903 1544789220828520452 "['forabolsonaro', 'bolsonaro', 'bolsonaronoprimeiroturno']" 0.59 0 0
+1545009339768905730 1657193906143 1544683112617082880 "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.1 0 0
+1545009375693111297 1657193914708  "['vamosjuntospelobrasil', 'lulanoprimeiroturno', 'lugardemilicoénoquartel']" 0.41 0 0
+1545009512213512192 1657193947257  "['lulanoprimeiroturno', 'lulanorio']" 0.27 0 1
+1545009538205720576 1657193953454  "['cpidomec', 'lula13presidente']" 0.14 -1 1
+1545009593436217350 1657193966622 1544806632789532672 "['vamosjuntospelobrasil', 'lulanoprimeiroturno']" 0.27 0 0
+1545009718351077379 1657193996404  "['lulaeleitonoprimeiroturno', 'vamosjuntospelobrasil', 'vamosjuntospelorio']" 0.05 1 0
+1545009738320171010 1657194001165  "['lulanoprimeiroturno', 'lulanorio']" 0.27 1 0
+1545009768963751938 1657194008471  "['lula13presidente', 'lula2022']" 0.31 0 0
+1545009934861045763 1657194048024 1544806378354708481 "['lulanoprimeiroturno', 'lulanorio']" 0.27 0 1
+1545009936274493442 1657194048361  "['bolsonaroreeleitonoprimeiroturno', 'brasilcombolsonaro', 'cpidoptepcc', 'bolsonaroorgulhodobrasil']" 0.29 1 0
+1545010166768312320 1657194103315  "['cpidomec', 'andrémendonçacapacho', 'prfassassina', 'forafamiliciabolsonaro', 'forapresidentedafunai', 'justicapordomebrunoemaxciel', 'forabolsonaroesuaquadrilha', 'boicoteahavan', 'michellebolsonarofingida', 'euacreditonaurnaeletrônica', 'nunesmarquesvassalo', 'taradosnacaixa']" 0.35 0 1
+1545010174779351041 1657194105225  "['lula2022', 'lulanoprimeiroturno', 'lula13']" 0.04 0 0
+1545010286469545985 1657194131854  "['lulaeleitonoprimeiroturno', 'lulanorio']" 0.27 1 1
+1545010400692944897 1657194159087  "['bolsonaroreeleitonoprimeiroturno', 'ptnuncamais']" 0.32 0 1
+1545010559975923713 1657194197063  "['bolsonarotemrazao', 'fakenews']" 0.68 1 0
+1545010569874489347 1657194199423  "['lulanoprimeiroturno', 'lulanorio']" 0.27 0 1
+1545010864079634432 1657194269567 1545008389444575234 "['rsqueopovoquer', 'tbt', 'pegueos600evotenolula', 'edegarpretto']" 0.21 -1 0
+1545010870056525829 1657194270992  "['pt', 'lula', 'saopaulo', 'alexandrefossatti', 'haddad', 'sp', 'lulanotiktok', 'brasil', 'vaidarpt', 'partidodostrabalhadores']" 0.09 0 1
+1545010911311810560 1657194280828  "['lulanoprimeiroturno', 'thorloveandthunder']" 0.37 0 0
+1545011197774290944 1657194349126  "['lulanoprimeiroturno', 'esperançaparaofuturo']" 0.21 0 1
+1545011292339113984 1657194371672  "['tarcisiogovernadorsp2022', 'bolsonaronoprimeiroturno']" 0.5864999999999999 0 1
+1545011308948602881 1657194375632  "['pt', 'lula', 'saopaulo', 'alexandrefossatti', 'haddad', 'sp', 'lulanotiktok', 'brasil', 'vaidarpt', 'partidodostrabalhadores']" 0.54 0 1
+1545011425243963394 1657194403359  "['lulanoprimeiroturno', 'forabolsonaroesuaquadrilha']" 0.05 0 1
+1545011515845115904 1657194424960 1544829796596809730 "['07desetembroserágigante', 'bolsonaronoprimeiroturno']" 0.04 0 0
+1545011700096720898 1657194468889  "['lulaeleitonoprimeiroturno', 'lulanoprimeiroturno']" 0.45 -1 0
+1545011745848180738 1657194479797  "['forabolsonaro', 'lula13']" 0.87 1 0
+1545011858763091970 1657194506718 1545011151792226304 "['lulasimliranao', 'lulanoprimeiroturno', 'lula2022', 'lulaeleitonoprimeiroturno', 'lula13presidente']" 0.06 1 0
+1545011972399316993 1657194533811  "['lulanoprimeiroturno', 'pegueos600evotenolula', 'lula13presidente']" 0.47833333333333333 0 0
+1545012075927408645 1657194558494  "['vemlula', 'lulanoprimeiroturno', 'lula13presidente']" 0.37 1 0
+1545012202184245248 1657194588596  "['riodejaneiro', 'lulaeoptobrasilquedacerto', 'lulanoprimeiroturno', 'equipelula', 'lulaeoptalegriadevolta']" 0.24 1 0
+1545012261772840962 1657194602803  "['lulanacadeia', 'ptnuncamais', 'ptpcc']" 0.44 -1 1
+1545012417230413824 1657194639867  "['forabolsonaroesuaquadrilha', 'bolsonaronacadeia', 'pegueos600evotenolula', 'forabolsonaro']" 0.17 -1 0
+1545012539926396931 1657194669120  "['tbt', 'vamosjuntospelobrasil']" 0.33 1 0
+1545012582280470529 1657194679218 1544453744863084545 "['patriotas', 'bolsonaro22', 'bolsonarobrasil']" 0.54 1 0
+1545012671845646338 1657194700572  "['riodejaneiro', 'lulaeoptobrasilquedacerto', 'lulanoprimeiroturno', 'equipelula', 'lulaeoptalegriadevolta']" 0.24 1 0
+1545012905225109506 1657194756214  "['lulanoprimeiroturno', 'pegueos600evotenolula']" 0.05 0 0
+1545013092559601665 1657194800878 1544787267570614280 "['pegueos600evotenolula', 'lula13']" 0.09 0 0
+1545013156602417154 1657194816147  "['lulavergonhadobrasil', 'lulaladraoseulugarenaprisao', 'ptnuncamais']" 0.09 0 1
+1545013237799944194 1657194835506 1544722244412350465 "['lulanoprimeiroturno', 'lulanorio']" 0.27 0 1

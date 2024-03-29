@@ -14,10 +14,14 @@ from multiprocessing import freeze_support
 logging.basicConfig(filename='logs/modularities.log',  \
                 filemode = 'w+',          \
                 encoding='utf-8',         \
-                level=logging.CRITICAL)
+                level=logging.WARNING)
 
 def main(args):
     # open files
+    if len(args) == 0:
+        start_from = 0
+    else:
+        start_from = int(args[0])
     modularity_data = pd.read_csv("data/collocations/2_hashtag_modularities_nodes_1000plus.csv", encoding="utf-8", sep=" ", header=0, names=["ID", "appearances", "modularity"])
     with open("data/collocations/2_hashtag_tweetIDs.pkl", "rb") as hashtags_ids_pickle:
         hashtags_tweetids = pickle.load(hashtags_ids_pickle)
@@ -46,6 +50,8 @@ def main(args):
     # get the pkl and json files
     pkl_files, json_files = disslib.get_tweet_files(dir_path="data/elections2022/", pairs_only=True)
     
+    pkl_files = pkl_files[start_from:]
+    json_files = json_files[start_from:]
     #pkl_files.reverse()
     #json_files.reverse()
     # set up sentiment and toxicity engines
@@ -67,8 +73,8 @@ def main(args):
 
     # get amount of unique modularities and do some printing before main loop
     num_modularities = len(modularity_data["modularity_class"].unique())
-    print(f"{str(-1).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, start)} | Number of modularities: {num_modularities}")
-    print(f"{str(-1).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, start)} | Number of tweets to find: {len(tweets_to_process)}")
+    print(f"{str(-1).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, start)} |          | Number of modularities: {num_modularities}")
+    print(f"{str(-1).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, start)} |          | Number of tweets to find: {len(tweets_to_process)}")
 
     # comb through all the json files which also have pkl files for each day,
     # collect the tweets in each modularity group, 
@@ -76,17 +82,27 @@ def main(args):
     # then append the results of each process into a collation dataframe
     # the final result will be written out to csv
     for index, json_file in enumerate(json_files):
+        pkl_file = pkl_files[index]
+        
         proc_start = time.time()
-        filedate = pkl_file.split(".")[0].split("-")[1]
+        
+        filedate = json_file.split(".")[0].split("-")[1]
         filename = "data/2_hashtag_stbm/2_hashtag_stbm_" + filedate + ".csv"
         
         print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, proc_start)} | {filedate} | Now loading file pair: {json_file.split('.')[0]}")
-        pkl_file = pkl_files[index]
+
         raw_twts = disslib.load_tweets_json(json_file)
         pkl_data = disslib.load_tweets_pkl(pkl_file)
+        
         raw_twts["id_str"] = pd.to_numeric(raw_twts["id_str"])
+        pkl_data["id_str"] = pd.to_numeric(pkl_data["id_str"])
+        
+        pkl_data = pkl_data[["id_str", "timestamp_ms", "quoted_status.id_str", "hashtags", "botscore"]]
+        pkl_data = pkl_data.reindex(columns=["id_str", "timestamp_ms", "quoted_status.id_str", "hashtags", "botscore", "sentiment", "toxicity"])
+
         filtered_json_twts = raw_twts[raw_twts["id_str"].isin(tweets_to_process)].copy()
         filtered_pkl_data = pkl_data[pkl_data["id_str"].isin(tweets_to_process)].copy()
+
         # TODO find a way to drop unnecessary columns if running out of memory becomes an issue
         #filtered_json_twts.drop(['A'], axis=1)
         total_tweets_checked += len(raw_twts)
@@ -95,32 +111,38 @@ def main(args):
             print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, data_filtered)} | {filedate} | 0 hits in day after load. Skipping sentiment analysis, toxicity analysis, and collation.")
         else:
             tweets_found += len(filtered_json_twts)
-            collation_frame = pd.DataFrame(columns=["id_str", "timestamp_ms", "quoted_status.id_str", "hashtags", "botscore", "sentiment", "toxicity", "modularity"])
             print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, data_filtered)} | {filedate} | Data loaded & filtered, {len(filtered_json_twts)} texts to process")
             
             texts_to_process = disslib.preprocess_text(list(filtered_json_twts["text"]), br_stopwords, pt_core)
             text_preprocessed = time.time()
             print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, text_preprocessed)} | {filedate} | Texts preprocessed via nltk and spacy")
             
-            filtered_pkl_data["sentiment"] = disslib.analyse_sentiment(texts_to_process, sentilex, pt_core)
+            sentiments_list = disslib.analyse_sentiment(texts_to_process, sentilex, pt_core)
+            filtered_pkl_data["sentiment"] = sentiments_list
             sentiment_done = time.time()
+            #print(filtered_json_twts)
             print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, sentiment_done)} | {filedate} | Sentiment analysis complete")
             
             predictions = []
-            for index, text in enumerate(texts_to_process):
-                prediction, _ = tox_model.predict(text)
-                predictions.append(prediction[0])
-                if 
+            #print(texts_to_process)
+            for text in texts_to_process:
+                try:
+                    #print(text)
+                    prediction, _ = tox_model.predict(text)
+                    predictions.append(prediction[0])
+                except IndexError:
+                    logging.warning("Index out of range on text %s", text)
+                    predictions.append(0)
             filtered_pkl_data["toxicity"] = predictions
             tox_done = time.time()
             print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, tox_done)} | {filedate} | Toxicity analysis complete")
+
+            #print(filtered_json_twts)
+            #print(filtered_pkl_data)
+            #pd.concat(filtered_pkl_data, filtered_json_twts, how="left", on="id_str")
+            #print(filtered_pkl_data)
             
-            pd.merge(collation_frame, filtered_pkl_data, how="left")
-            pd.merge(collation_frame, modularity_data, how="left")
-            collation_done = time.time()
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, collation_done)} | {filedate} | Data collation complete")
-            
-            collation_frame.to_csv(filename, sep=" ", encoding="utf-8", index=False)
+            filtered_pkl_data.to_csv(filename, sep=" ", encoding="utf-8", index=False)
             written_out = time.time()
             print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, written_out)} | {filedate} | CSV file {filename} written out")
             
