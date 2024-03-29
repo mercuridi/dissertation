@@ -17,10 +17,10 @@ from simpletransformers.classification import ClassificationModel
 
 URL_PATTERN = r"(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?"
 
-def safe_print(lock, index, file_digits, files_to_process, start_time, end_time, filedate, message):
+def safe_print(lock, thread_pid, start_time, end_time, filedate, message):
     lock.acquire()
     try:
-        print(f"{str(index).rjust(file_digits)}/{files_to_process} | {nicetime(start_time, end_time)} | {filedate} | {message}")
+        print(f"{str(thread_pid).rjust(10)} | {filedate} | {nicetime(start_time, end_time)} | {message}")
     finally:
         lock.release()
 

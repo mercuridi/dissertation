@@ -27,3 +27,5 @@ if __name__ == '__main__':
         print(p.map(f, [1, 2, 3]))
 ```
     - So the eventual multithreaded implementation will likely have "f" as the body INSIDE the current for loop, and the list of values as pairs of filenames
+
+done, and doesn't help because the multiprocessing fills memory and causes a crash
