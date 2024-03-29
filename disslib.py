@@ -170,8 +170,7 @@ def load_tokeniser():
     print("Setup complete.")
     return tknzr
 
-def load_toxicity_model():
-    silent = True
+def load_toxicity_model(silent=True):
     if not torch.cuda.is_available():
         print("Running on fallback with no CUDA. This is not recommended and will take a really long time!")
         print("Enabling progress bars so you get the idea on the amount of work being done.")

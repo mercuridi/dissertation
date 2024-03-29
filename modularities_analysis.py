@@ -76,8 +76,10 @@ def main(args):
     # the final result will be written out to csv
     for index, json_file in enumerate(json_files):
         proc_start = time.time()
+        filedate = pkl_file.split(".")[0].split("-")[1]
+        filename = "data/2_hashtag_stbm_/2_hashtag_stbm_" + filedate + ".csv"
         
-        print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, proc_start)} | Now loading file pair: {json_file.split('.')[0]}")
+        print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, proc_start)} | {filedate} | Now loading file pair: {json_file.split('.')[0]}")
         pkl_file = pkl_files[index]
         raw_twts = disslib.load_tweets_json(json_file)
         pkl_data = disslib.load_tweets_pkl(pkl_file)
@@ -88,37 +90,41 @@ def main(args):
         #filtered_json_twts.drop(['A'], axis=1)
         total_tweets_checked += len(raw_twts)
         data_filtered = time.time()
-        if len(filtered_json_twts) > 0:
+        if len(filtered_json_twts) == 0:
+            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, data_filtered)} | {filedate} | 0 hits in day after load. Skipping sentiment analysis, toxicity analysis, and collation.")
+        else:
             tweets_found += len(filtered_json_twts)
             collation_frame = pd.DataFrame(columns=["id_str", "timestamp_ms", "quoted_status.id_str", "hashtags", "botscore", "sentiment", "toxicity", "modularity"])
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, data_filtered)} | Data loaded & filtered, {len(filtered_json_twts)} tweets to process")
+            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, data_filtered)} | {filedate} | Data loaded & filtered, {len(filtered_json_twts)} texts to process")
+            
             texts_to_process = disslib.preprocess_text(list(filtered_json_twts["text"]), br_stopwords, pt_core)
             text_preprocessed = time.time()
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, text_preprocessed)} | Text preprocessed.")
+            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, text_preprocessed)} | {filedate} | Texts preprocessed via nltk and spacy")
+            
             filtered_pkl_data["sentiment"] = disslib.analyse_sentiment(texts_to_process, sentilex, pt_core)
             sentiment_done = time.time()
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, sentiment_done)} | Sentiment analysis complete")
-            _, outputs = tox_model.predict(texts_to_process)
-            filtered_pkl_data["toxicity"] = outputs
+            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, sentiment_done)} | {filedate} | Sentiment analysis complete")
+            
+            predictions = []
+            for index, text in enumerate(texts_to_process):
+                prediction, _ = tox_model.predict(text)
+                predictions.append(prediction[0])
+                if 
+            filtered_pkl_data["toxicity"] = predictions
             tox_done = time.time()
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, tox_done)} | Toxicity analysis complete")
+            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, tox_done)} | {filedate} | Toxicity analysis complete")
             
             pd.merge(collation_frame, filtered_pkl_data, how="left")
             pd.merge(collation_frame, modularity_data, how="left")
             collation_done = time.time()
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, collation_done)} | Data collation complete")
+            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, collation_done)} | {filedate} | Data collation complete")
             
-            filedate = pkl_file.split(".")[0].split("-")[1]
-            filename = "data/2_hashtag_stbm_/2_hashtag_stbm_" + filedate + ".csv"
             collation_frame.to_csv(filename, sep=" ", encoding="utf-8", index=False)
             written_out = time.time()
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, written_out)} | csv file {filename} written out")
+            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, written_out)} | {filedate} | CSV file {filename} written out")
             
+            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, written_out)} | {filedate} | So far, found {tweets_found}/{len(tweets_to_process)} out of {total_tweets_checked} possible data entries")
 
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, written_out)} | So far, found {tweets_found}/{len(tweets_to_process)} out of {total_tweets_checked} possible data entries")
-
-        else:
-            print(f"{str(index).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, data_filtered)} | 0 hits in day after load. Skipping sentiment analysis, toxicity analysis, and collation.")
 
 if __name__ == '__main__':
     main(sys.argv[1:])
