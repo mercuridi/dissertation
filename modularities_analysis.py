@@ -184,7 +184,7 @@ def process_files(arg_tuple):
         # synchronise before we load files to prevent memory overloads
         # this forces each processor to wait for the gpu to finish ALL of 
         # the current toxicity workloads before loading more data to RAM
-        filtered_pkl_data["toxicity"] = wait(lambda: run_tox_model, sleep_seconds=3)
+        filtered_pkl_data["toxicity"] = wait(lambda: run_tox_model(texts_to_process, tox_model), sleep_seconds=3)
         tox_done = time.time()
         disslib.safe_print(inner_lock, pid, start, tox_done, filedate, "Toxicity analysis complete")
 
