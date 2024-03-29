@@ -5,12 +5,94 @@ import os
 import glob
 import sys
 import logging
+import string
 import re
 import datetime as dt
 import torch
 import pandas as pd
 import nltk
+import spacy
+import pt_core_news_sm
 from simpletransformers.classification import ClassificationModel
+
+URL_PATTERN = r"(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?"
+
+def preprocess_text(text_list, stopwords, pt_core):
+    # pipeline from https://spotintelligence.com/2022/12/21/nltk-preprocessing-pipeline
+    processed_list = []
+    for text in text_list:
+        text = text.strip()
+        text = " ".join(text.split())
+        cleaned_text = re.sub(URL_PATTERN, "", text)
+        tokens = nltk.word_tokenize(cleaned_text)
+        lowercased_tokens = [token.lower() for token in tokens]
+        nopunc_tokens = [token for token in lowercased_tokens if token not in string.punctuation]
+        filtered_tokens = [token for token in nopunc_tokens if token.lower() not in stopwords]
+        rejoined_tokens = " ".join(filtered_tokens)
+        doc = pt_core(rejoined_tokens)
+        #print(doc.text)
+        processed_list.append(doc.text)
+    return processed_list
+        
+def process_nlp(text_list, pt_core):
+    logging.info("Performing sentiment NLP via spaCy2...")
+    nlp_processed = []
+    for text in text_list:
+        doc = pt_core(text)
+        nlp_processed.append(doc)
+        #logging.info([(w.text, w.pos_) for w in doc])
+    logging.info("NLP processing complete: %d records.", len(nlp_processed))
+    return nlp_processed
+
+def analyse_sentiment(text_list, sentilex_dataframe, pt_core):
+    logging.info("Beginning sentiment analysis...")
+    processed_text_list = process_nlp(text_list, pt_core)
+    sentiments = []
+    for text in processed_text_list:
+        text_sentiment = 0
+        for word in text:
+            try:
+                text_sentiment += int(sentilex_dataframe.at[word.text, "POL:N0"])
+            except (KeyError, ValueError, TypeError):
+                continue
+            try:
+                text_sentiment += int(sentilex_dataframe.at[word.text, "POL:N1"])
+            except (KeyError, ValueError, TypeError):
+                continue
+        sentiments.append(text_sentiment)
+    logging.info("Sentiment analysis complete.")
+    return sentiments
+
+def load_pt_core():
+    logging.info("Loading Portuguese NLP library.")
+    nlp = spacy.load("pt_core_news_sm")
+    logging.info("Portuguese NLP loaded.")
+    return nlp
+
+def load_sentilex(filename="data/sentilex.txt"):
+    logging.info("Loading SentiLex-PT02 from file...")
+    sentilex = pd.read_csv(filename, sep = "|", index_col=0, header=0)
+    logging.info("Loaded SentiLex from txt file.")
+    return sentilex
+
+def nicetime(start_time, end_time):
+    time_diff = int(end_time-start_time)
+    if time_diff > 3600:
+        hours   = str(time_diff // 3600)
+        minutes = str((time_diff - (hours * 3600)) // 60)
+        seconds = str(time_diff % 60)
+    elif time_diff > 60:
+        hours   = "00"
+        minutes = str(time_diff // 60)
+        seconds = str(time_diff % 60)
+    else:
+        hours   = "00"
+        minutes = "00"
+        seconds = str(time_diff)
+    if int(seconds) < 10:
+        seconds = "0"+seconds
+    return (hours+":"+minutes+":"+seconds).rjust(9)
+
 
 def increment_occurrence(dict_to_update, occurrence, weight=1):
     if occurrence in dict_to_update:
@@ -58,10 +140,10 @@ def load_tweets_json(filename):
 def load_tweets_pkl(filename):
     # written with an eye to the load_tweets_json function
     init = dt.datetime.now()
-    print(init, filename,)
+    #print(init, filename,)
     with gzip.GzipFile(filename) as tw_file:
         data = pd.read_pickle(tw_file)
-    print(dt.datetime.now()-init, filename)
+    #print(dt.datetime.now()-init, filename)
     return data
 
 def parse_tweet(tw):

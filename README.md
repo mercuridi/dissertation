@@ -39,3 +39,6 @@ Toxic Language Dataset for Brazilian Portuguese (ToLD-Br)
 ```
 The most recent version of ToLD-Br at its Github repository as of 14/02/2024 should be cloned into `/data/ToLD-Br/`. The pre-trained BERT model is also kept locally. These assets are not uploaded to this repository due to their large file size (100MB~ for code and data, 1000MB for BERT model). A link to download the pre-trained model can be found in the README for ToLD-Br.
 ToLD-Br's code is licensed under the MIT License, and the dataset itself is licensed under Creative Commons 4.0.
+
+###
+https://lars76.github.io/2018/05/08/portuguese-lemmatizers.html

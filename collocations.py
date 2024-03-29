@@ -44,12 +44,6 @@ def update_collocations(collocation_dict, hashtag_data, data, combination_size):
 
     return collocation_dict, hashtag_data
 
-def nicetime(start_time, end_time, just=True):
-    if just:
-        return (str(round(end_time-start_time, 3))+"s").rjust(9)
-    else:
-        return str(round(end_time-start_time, 3))+"s"
-
 def main(args):
     # ORIG. AUTHOR: Diogo Pacheco, modified KBH
     # heavily, heavily modified to run driver code for collocation processing
@@ -79,32 +73,32 @@ def main(args):
     
     for i, pkl_file in enumerate(pkl_files):
         proc_start = time.time()
-        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, proc_start)} | Now loading file: {pkl_file}")
+        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, proc_start)} | Now loading file: {pkl_file}")
         base_data = pd.read_pickle(pkl_file)
         pkl_read = time.time()
-        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, pkl_read)} | Read file containing {len(base_data)} entries in {nicetime(proc_start, pkl_read, False)}")
+        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, pkl_read)} | Read file containing {len(base_data)} entries")
         
         no_nan = base_data[base_data["hashtags"].notna()]
         no_retweets = no_nan[no_nan["retweeted_status.id_str"].isnull()]
         #no_quotes = no_retweets[no_retweets["quoted_status.id_str"].isnull()]
         nans_dropped = time.time()
-        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, nans_dropped)} | Dropped {len(base_data)-len(no_retweets)} bad rows in {nicetime(pkl_read, nans_dropped, False)}, leaving {len(no_retweets)} rows to process.")
-        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, nans_dropped)} |→ Base data: {len(base_data)}, no NaN: {len(no_nan)}, no retweets: {len(no_retweets)}")
+        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, nans_dropped)} | Dropped {len(base_data)-len(no_retweets)} bad rows, leaving {len(no_retweets)} rows to process.")
+        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, nans_dropped)} |→ Base data: {len(base_data)}, no NaN: {len(no_nan)}, no retweets: {len(no_retweets)}")
         
         update_collocations(collocation_dict, hashtag_data, no_retweets, combination_size)
         collocs_updated = time.time()
-        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, collocs_updated)} | Collocations updated in {nicetime(nans_dropped, collocs_updated, just=False)}")
+        print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, collocs_updated)} | Collocations updated")
     
     # print collocations
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Work finished.") 
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Combination size: {combination_size}")
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Work finished.") 
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Combination size: {combination_size}")
     #print("Printing sample of most common collocations...")
     sorted_collocations = [(k, v) for k, v in sorted(collocation_dict.items(), key=lambda x: x[1], reverse=False)]
     #for i in range(1,6):
         #print(f"  {sorted_collocations[-i]}")
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Total unique collocations: {len(collocation_dict)}")
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Total unique collocations: {len(collocation_dict)}")
 
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Writing edges csv...")
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Writing edges csv...")
     filename = "data/collocations/" + str(combination_size) + "_hashtag_collocations.csv"
     with open(filename, "w+", encoding="utf-8") as csv_handle:
         appearances_dict = {}
@@ -116,22 +110,22 @@ def main(args):
             edges_writer.writerow([u, v, weight])
             disslib.increment_occurrence(appearances_dict, u, weight)
             disslib.increment_occurrence(appearances_dict, v, weight)
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Done.")
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Done.")
 
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Writing nodes csv...")
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Writing nodes csv...")
     filename = "data/collocations/" + str(combination_size) + "_hashtag_appearances.csv"
     with open(filename, "w+", encoding="utf-8") as csv_appearances_handle:
         appearances_writer = csv.writer(csv_appearances_handle, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         appearances_writer.writerow(["Label", "Appearances"])
         for node, appearances in appearances_dict.items():
             appearances_writer.writerow([node, appearances])
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Done.")
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Done.")
     
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Dumping hashtag:IDs dictionary to pkl...")
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Dumping hashtag:IDs dictionary to pkl...")
     filename = "data/collocations/" + str(combination_size) + "_hashtag_tweetIDs.pkl"
     with open(filename, "wb") as pkl_ids_handle:
         pickle.dump(hashtag_data, pkl_ids_handle)
-    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {nicetime(start, time.time())} | Done.")
+    print(f"{str(i).rjust(file_digits)}/{files_to_process} | {disslib.nicetime(start, time.time())} | Done.")
 
 if __name__ == "__main__":
     main(sys.argv[1:])
