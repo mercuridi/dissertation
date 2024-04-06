@@ -3,6 +3,14 @@
 *.json
 *.pkl
 *.log
+*.csv
 
 ToLD-Br
 ToLD-Br/*
+
+data/collocations/*
+data/2_hashtag_stbm/*
+
+writing/signature.png
+
+gephi_files/*

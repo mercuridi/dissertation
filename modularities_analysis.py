@@ -7,6 +7,7 @@ import datetime as dt
 import glob
 import os
 import disslib
+import random
 import numpy as np
 import nltk
 from multiprocessing import Pool, Lock, Manager, set_start_method
@@ -49,8 +50,8 @@ def main(args, multiprocessed):
     # get the pkl and json files
     pkl_files, json_files = disslib.get_tweet_files(dir_path="data/elections2022/", pairs_only=True)
     
-    #pkl_files.reverse()
-    #json_files.reverse()
+    pkl_files.reverse()
+    json_files.reverse()
     # set up sentiment and toxicity engines
     tox_model = disslib.load_toxicity_model()
     sentilex = disslib.load_sentilex()
@@ -90,6 +91,8 @@ def main(args, multiprocessed):
 
             for file in already_done:
                 done_set.add(file.split(".")[0].split("_")[5])
+            
+
 
             for index, json_file in enumerate(json_files):
                 filedate = json_file.split(".")[0].split("-")[1]
@@ -120,102 +123,112 @@ def main(args, multiprocessed):
         already_done = glob.glob(os.path.join("data/2_hashtag_stbm", '*.csv'))
         done_set = set()
         lock = Lock()
-
+        to_process = []
         for file in already_done:
             done_set.add(file.split(".")[0].split("_")[5])
-        for index, json_file in enumerate(json_files):
-            pkl_file = pkl_files[index]
-            filedate = json_file.split(".")[0].split("-")[1]
+        for file in json_files:
+            filedate = file.split(".")[0].split("-")[1]
             if filedate not in done_set:
-                process_files(
-                    (tweets_to_process, 
-                    tox_model, 
-                    sentilex, 
-                    br_stopwords, 
-                    pt_core, 
-                    total_tweets_checked, 
-                    tweets_found, 
-                    start,
-                    json_file, 
-                    pkl_file, 
-                    lock)
-                )
+                #print(file)
+                to_process.append(file)
+        random.shuffle(to_process)
+        print(f"{str(os.getpid()).rjust(10)} |          | {disslib.nicetime(start, start)} | Number of files to process: {len(to_process)}")
+        for json_file in to_process:
+            pkl_file = json_file.split(".")[0]+".pkl.gz"
+            process_files(
+                (tweets_to_process, 
+                tox_model, 
+                sentilex, 
+                br_stopwords, 
+                pt_core, 
+                tweets_found, 
+                start,
+                json_file, 
+                pkl_file, 
+                lock)
+            )
 def process_files(arg_tuple):
-    (tweets_to_process, tox_model, sentilex, br_stopwords, pt_core, total_tweets_checked, tweets_found, start, json_file, pkl_file, inner_lock) = arg_tuple
+    (tweets_to_process, tox_model, sentilex, br_stopwords, pt_core, tweets_found, start, json_file, pkl_file, inner_lock) = arg_tuple
     pid = os.getpid()
     proc_start = time.time()
         
     filedate = json_file.split(".")[0].split("-")[1]
     filename = "data/2_hashtag_stbm/2_hashtag_stbm_" + filedate + ".csv"
     
-    disslib.safe_print(inner_lock, pid, start, proc_start, filedate, f"Now loading file pair: {json_file.split('.')[0]}")
+    disslib.safe_print(inner_lock, pid, start, proc_start, filedate, f"Now loading JSON file: {json_file}")
+    disslib.safe_print(inner_lock, pid, start, proc_start, filedate, f"Corresponding PKL: {pkl_file}")
 
     raw_twts = disslib.load_tweets_json(json_file)
-    pkl_data = disslib.load_tweets_pkl(pkl_file)
-
     raw_twts["id_str"] = pd.to_numeric(raw_twts["id_str"])
-    pkl_data["id_str"] = pd.to_numeric(pkl_data["id_str"])
-
-    pkl_data = pkl_data[["id_str", "timestamp_ms", "quoted_status.id_str", "hashtags", "botscore"]]
-    pkl_data = pkl_data.reindex(columns=["id_str", "timestamp_ms", "quoted_status.id_str", "hashtags", "botscore", "sentiment", "toxicity"])
-
     filtered_json_twts = raw_twts[raw_twts["id_str"].isin(tweets_to_process)].copy()
-    filtered_pkl_data = pkl_data[pkl_data["id_str"].isin(tweets_to_process)].copy()
 
-    total_tweets_checked += len(raw_twts)
     data_filtered = time.time()
     if len(filtered_json_twts) == 0:
         disslib.safe_print(inner_lock, pid, start, data_filtered, filedate, "0 hits in day after load. Skipping sentiment analysis, toxicity analysis, and collation.")
     else:
         tweets_found += len(filtered_json_twts)
         disslib.safe_print(inner_lock, pid, start, data_filtered, filedate, f"{len(filtered_json_twts)} texts found after filtering")
+        if len(filtered_json_twts) > 50000:
+            disslib.safe_print(inner_lock, pid, start, data_filtered, filedate, "ooh mama that's a big file!")
+            return
             
         texts_to_process = disslib.preprocess_text(list(filtered_json_twts["text"]), br_stopwords, pt_core)
         text_preprocessed = time.time()
         disslib.safe_print(inner_lock, pid, start, text_preprocessed, filedate, "Texts preprocessed via nltk and spacy")
             
         sentiments_list = disslib.analyse_sentiment(texts_to_process, sentilex, pt_core)
-        filtered_pkl_data["sentiment"] = sentiments_list
+        filtered_json_twts["sentiment"] = sentiments_list
         sentiment_done = time.time()
             #print(filtered_json_twts)
         disslib.safe_print(inner_lock, pid, start, sentiment_done, filedate, "Sentiment analysis complete")
             
-
-        # synchronise before we load files to prevent memory overloads
-        # this forces each processor to wait for the gpu to finish ALL of 
-        # the current toxicity workloads before loading more data to RAM
-        filtered_pkl_data["toxicity"] = wait(lambda: run_tox_model(texts_to_process, tox_model), sleep_seconds=3)
+        filtered_json_twts["toxicity"] = run_tox_model(texts_to_process, tox_model, inner_lock, start, filedate)
         tox_done = time.time()
-        disslib.safe_print(inner_lock, pid, start, tox_done, filedate, "Toxicity analysis complete")
+        disslib.safe_print(inner_lock, pid, start, tox_done, filedate, "Toxicity analysis complete; now loading and constructing PKL file to dataframe")
+        
+        filtered_json_twts.drop(["text"], axis=1)
 
-            #print(filtered_json_twts)
-            #print(filtered_pkl_data)
-            #pd.concat(filtered_pkl_data, filtered_json_twts, how="left", on="id_str")
-            #print(filtered_pkl_data)
-            
+        pkl_data = disslib.load_tweets_pkl(pkl_file)
+        pkl_data["id_str"] = pd.to_numeric(pkl_data["id_str"])
+        pkl_data = pkl_data[["id_str", "timestamp_ms", "quoted_status.id_str", "hashtags", "botscore"]]
+        pkl_data = pkl_data.reindex(columns=["id_str", "timestamp_ms", "quoted_status.id_str", "hashtags", "botscore", "sentiment", "toxicity"])
+        filtered_pkl_data = pkl_data[pkl_data["id_str"].isin(tweets_to_process)].copy()
+        filtered_pkl_data["sentiment"] = filtered_json_twts["sentiment"]
+        filtered_pkl_data["toxicity"] = filtered_json_twts["toxicity"]
         filtered_pkl_data.to_csv(filename, sep=" ", encoding="utf-8", index=False)
         written_out = time.time()
-        disslib.safe_print(inner_lock, pid, start, written_out, filedate, f"CSV file {filename} written out")
-            
-        disslib.safe_print(inner_lock, pid, start, written_out, filedate, f"So far, found {tweets_found}/{len(tweets_to_process)} out of {total_tweets_checked} possible data entries")
+        disslib.safe_print(inner_lock, pid, start, written_out, filedate, f"CSV file {filename} written out from constructed dataframe")
 
 def init_pool_processes(the_lock):
-    '''Initialize each process with a global variable lock.
-    '''
     global lock
     lock = the_lock
 
-def run_tox_model(texts_to_process, tox_model):
+def run_tox_model(texts_to_process, tox_model, model_lock, start_time, filedate):
     predictions = []
-    for text in texts_to_process:
+    verbose = False
+    threshold = 1000
+    times_to_print = 20
+    times_printed = 0
+    if len(texts_to_process) > threshold:
+        verbose = True
+        modulus = len(texts_to_process) // times_to_print
+        started_tox = time.time()
+        disslib.safe_print(model_lock, os.getpid(), start_time, started_tox, filedate, f"More than {threshold} texts to process; printing progress status.")
+    for text_num, text in enumerate(texts_to_process):
         try:
-                #print(text)
             prediction, _ = tox_model.predict(text)
             predictions.append(prediction[0])
+            if verbose:
+                if text_num % modulus == 0:
+                    percent_done = time.time()
+                    disslib.safe_print(model_lock, os.getpid(), start_time, percent_done, filedate, f"{text_num}/{len(texts_to_process)} complete")
+                    disslib.safe_print(model_lock, os.getpid(), start_time, percent_done, filedate, f"  ({times_printed}/{times_to_print})")
+                    times_printed += 1
+
         except IndexError:
             logging.warning("Index out of range on text %s", text)
             predictions.append(0)
     return predictions
 
 if __name__ == '__main__':
-    main(sys.argv[1:], multiprocessed=True)
+    main(sys.argv[1:], multiprocessed=False)

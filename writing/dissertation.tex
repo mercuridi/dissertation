@@ -1,0 +1,57 @@
+\documentclass[a4paper,11pt]{article}  % font size 11pt set here
+\usepackage{graphicx} % graphicx is the package for figures
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry} % make the margins the right size
+\usepackage{parskip} % parskip separates non-indented paragraphs by a blank line.
+\usepackage[style=ieee, backend=biber]{biblatex} % bibliography and citation handler
+\addbibresource{dissertation.bib} % tell biblatex where our bibliography is
+
+% Here's the paper's title and author details.
+\title{Automated Toxicity in Brazilian Political Discourse}
+\author{Kai Barber-Harris}
+\date{}   % Remove this line if you actually want to see the date
+
+% Here is the actual beginning of the document
+\begin{document}
+	
+	%=========================================================================================================
+	% Title page
+	%=========================================================================================================
+	\maketitle
+	
+	\begin{abstract}
+		An abstract is a short statement about your paper designed to give the reader a complete, yet 
+		concise, understanding of your paper's research and findings. It is a mini-version of your paper.
+		A well-prepared abstract allows a reader to quickly and accurately identify the basic content of 
+		your paper. Readers should be able to read your abstract to see if the related research is of 
+		interest to them.  It is a bit like advertising: having read the abstract, do you want to pay to see the
+		whole paper, which might be behind a paywall.
+		Do not include citations in an abstract.  100-200 words.
+	\end{abstract}
+	
+	\vfill
+	
+	\begin{center}
+		I certify that all material in this dissertation which is not my own work has been identified.
+	\end{center}
+	
+	\vspace{5mm}
+	
+	Signed: 
+	
+	\vspace{50mm}
+	
+	\newpage
+	%=========================================================================================================
+	% Content starts here
+	%=========================================================================================================
+	\section{Introduction}
+	\label{sec:intro}
+	
+	%=========================================================================================================
+	% Content ends here
+	%=========================================================================================================
+	
+	\newpage
+	\printbibliography
+	
+\end{document}
