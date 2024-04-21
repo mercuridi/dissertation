@@ -40,13 +40,16 @@ def main(args, multiprocessed):
     filtered_data = modularity_data.loc[modularity_data["modularity"].isin(set(modularities_to_find))]
     
     # using the hashtags in each group, find the tweet IDs that contain those hashtags
+    #nodes_999_names = set(modularity_data["ID"])
     nodes_999_names = set(filtered_data["ID"])
     tweets_to_process = set()
     for key, tweetids in hashtags_tweetids.items():
         if key in nodes_999_names:
             for str_id in tweetids:
                 tweets_to_process.add(np.int64(str_id))
-
+    
+    #print(len(tweets_to_process))
+    exit()
     # get the pkl and json files
     pkl_files, json_files = disslib.get_tweet_files(dir_path="data/elections2022/", pairs_only=True)
     

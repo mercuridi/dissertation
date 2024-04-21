@@ -12,5 +12,15 @@ data/collocations/*
 data/2_hashtag_stbm/*
 
 writing/signature.png
+writing/dissertation.aux
+writing/dissertation.bbl
+writing/dissertation.bcf
+writing/dissertation.bib
+writing/dissertation.blg
+writing/dissertation.log
+writing/dissertation.out
+writing/dissertation.run.xml
+writing/dissertation.synctex.gz
+writing/dissertation.toc
 
 gephi_files/*

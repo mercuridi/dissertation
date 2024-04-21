@@ -1,21 +1,34 @@
 # README
+## Purpose
+This git repository is a record of the work that went into my dissertation for the completion of my degree.
+
 ## Process
-1. collocations.py
-1.1. Load pickle files that have a json file match
-1.2. For each pickle file, filter out retweets and tweets which have no hashtags
-1.3. For the remaining tweets in each file, generate the sorted combinations of collocations to create a table of undirected edges
-1.4. During this, track the appearances of each individual hashtag in the 2-collocation set
-2. edges_filter.py
-2.1. For the data found, reprocess via a simple loop filtering out nodes and their edges which have very low values
-2.2. Without this extra step, gephi is very prone to crashing and corrupting its own directory
-3. gephi
-3.1. Load the filtered appearances as a node table, and the filtered collocations as an edge table
-3.2. Filter to less nodes to get more focused groups
-3.3. Run modularity on whole graph to determine groups
-3.4. Run OpenOrd layout algorithm
+- collocations.py
+    - Load pickle files that have a json file match
+    - For each pickle file, filter out retweets and tweets which have no hashtags
+    - For the remaining tweets in each file, generate the sorted combinations of collocations to create a table of undirected edges
+    - During this, track the appearances of each individual hashtag in the 2-collocation set
+- edges_filter.py
+    - For the data found, reprocess via a simple loop filtering out nodes and their edges which have very low values
+    - Without this extra step, gephi is very prone to crashing and corrupting its own directory
+- gephi
+    - Load the filtered appearances as a node table, and the filtered collocations as an edge table
+    - Filter to less nodes to get more focused groups
+    - Run modularity on whole graph to determine groups
+    - Run OpenOrd layout algorithm
+    - Export data back out with modularities included
+- modularities_analysis.py
+    - Load the files back in with modularities
+    - Process sentiment and toxicity values for any tweet containing a hashtag that appears in the modularity focused on Lula or Bolsonaro
+    - With these criteria, we have reduced the amount of tweets to process from 417 million to just under 1 million.
+- gephi part 2
+    - Reload the newly processed data with toxicity and sentiment scores
+    - Analyse alongside the botscore
+
+
 ## Acknowledgements
 ### ConvertTweetJsonToParquet.py
-ConvertTweetJsonToParquet.py is provided generously by Diogo Pacheco, and has been left unmodified. Sections of Pacheco's code have been used in file XXX; any methods copied or otherwise adapted from Pacheco's work are annotated as such in comments.
+ConvertTweetJsonToParquet.py is provided generously by Diogo Pacheco, and has been left unmodified. Small sections of Pacheco's code have been used in various files; any methods copied or otherwise adapted from Pacheco's work are annotated as such in comments.
 
 ### SentiLexP2
 SentiLexP2 (Portuguese sentiment analysis lexicon) generously provided open-source as a product of Carvalho, Paula; Silva, Mário J at https://b2find.eudat.eu/dataset/b6bd16c2-a8ab-598f-be41-1e7aeecd60d3.

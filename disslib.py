@@ -150,7 +150,7 @@ def load_tweets_json(filename):
 
 def load_tweets_pkl(filename):
     # written with an eye to the load_tweets_json function
-    init = dt.datetime.now()
+    #init = dt.datetime.now()
     #print(init, filename,)
     with gzip.GzipFile(filename) as tw_file:
         data = pd.read_pickle(tw_file)
