@@ -1,8 +1,16 @@
+"""
+Tiny script that returns the columns in each type of file
+
+Returns:
+    logs/columns.log: Logfile of columns in each file
+"""
+
 import logging
 import json
 import pandas as pd
 import disslib
 
+# set up logging
 logging.basicConfig(filename='logs/columns.log',  \
                 filemode = 'w+',          \
                 encoding='utf-8',         \

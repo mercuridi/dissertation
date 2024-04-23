@@ -24,12 +24,12 @@ This git repository is a record of the work that went into my dissertation for t
 - gephi part 2
     - Reload the newly processed data with toxicity and sentiment scores
     - Analyse alongside the botscore
+- writing and plotting
+    - Plot graphs that are interesting
+    - Analyse interesting graphs
 
 
 ## Acknowledgements
-### ConvertTweetJsonToParquet.py
-ConvertTweetJsonToParquet.py is provided generously by Diogo Pacheco, and has been left unmodified. Small sections of Pacheco's code have been used in various files; any methods copied or otherwise adapted from Pacheco's work are annotated as such in comments.
-
 ### SentiLexP2
 SentiLexP2 (Portuguese sentiment analysis lexicon) generously provided open-source as a product of Carvalho, Paula; Silva, Mário J at https://b2find.eudat.eu/dataset/b6bd16c2-a8ab-598f-be41-1e7aeecd60d3.
 There seemed to be an error in line 5604: `ponto fraco.PoS=N;TG=HUM:N2;POL:N0=-3;ANOT=MAN`
