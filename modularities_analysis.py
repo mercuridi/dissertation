@@ -69,6 +69,17 @@ def main(multiprocessed):
     # get the pkl and json files
     pkl_files, json_files = disslib.get_tweet_files(dir_path="data/elections2022/", pairs_only=True)
 
+    # figure out what is and isn't done already
+    done_set = set()
+    to_process = []
+    already_done = glob.glob(os.path.join("data/2_hashtag_stbm", '*.csv'))
+    for file in already_done:
+        done_set.add(file.split(".")[0].split("_")[5])
+    for file in json_files:
+        filedate = file.split(".")[0].split("-")[1]
+        if filedate not in done_set:
+            to_process.append(file)
+
     # set up sentiment and toxicity engines
     tox_model = disslib.load_toxicity_model()
     sentilex = disslib.load_sentilex()
@@ -118,15 +129,9 @@ def main(multiprocessed):
             # set up variables
             start = time.time()
             lock = manager.Lock()
-            already_done = glob.glob(os.path.join("data/2_hashtag_stbm", '*.csv'))
-            done_set = set()
 
-            # figure out what is and isn't done
-            for file in already_done:
-                done_set.add(file.split(".")[0].split("_")[5])
-
-            # parse arguments into a tuple so that out spawned threads can use them
-            # i don't know why they need me to do this, it's just how it works
+            # parse arguments into a list of tuples so that our spawned threads can use them
+            # i don't know why multiprocessing needs me to do this, it's just how it works
             for index, json_file in enumerate(json_files):
                 filedate = json_file.split(".")[0].split("-")[1]
                 if filedate not in done_set:
@@ -156,18 +161,8 @@ def main(multiprocessed):
     else:
         # set up variables
         start = time.time()
-        done_set = set()
         to_process = []
         lock = Lock()
-
-        # figure out what is and isn't done already
-        already_done = glob.glob(os.path.join("data/2_hashtag_stbm", '*.csv'))
-        for file in already_done:
-            done_set.add(file.split(".")[0].split("_")[5])
-        for file in json_files:
-            filedate = file.split(".")[0].split("-")[1]
-            if filedate not in done_set:
-                to_process.append(file)
 
         # shuffle the files to process, just for fun, why not
         random.shuffle(to_process)

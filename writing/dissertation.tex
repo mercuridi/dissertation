@@ -11,6 +11,9 @@
 \usepackage{wrapfig} % wrap text around figures
 \usepackage{mwe} % helps with grid subfigures or something like that
 \usepackage{array} % multicolumns
+\usepackage[english]{babel} % fix backwards quotations
+\usepackage[autostyle, english = british]{csquotes} % fix backwards quotations
+\MakeOuterQuote{"}
 
 \addbibresource{dissertation.bib} % tell biblatex where our bibliography is
 
@@ -29,15 +32,9 @@
 	% Title page
 	%=========================================================================================================
 	\maketitle
-	
+	\vspace{5cm}
 	\begin{abstract}
-		An abstract is a short statement about your paper designed to give the reader a complete, yet 
-		concise, understanding of your paper's research and findings. It is a mini-version of your paper.
-		A well-prepared abstract allows a reader to quickly and accurately identify the basic content of 
-		your paper. Readers should be able to read your abstract to see if the related research is of 
-		interest to them.  It is a bit like advertising: having read the abstract, do you want to pay to see the
-		whole paper, which might be behind a paywall.
-		Do not include citations in an abstract.  100-200 words.
+		In the past two decades, social media and widely available internet access in developed countries has provided a new and powerful surface for malicious actors to influence discussions. Of particular note and vulnerability to these manipulations is online political discussion, which has the outreach and potential to swing elections with millions of users regularly logging in and engaging in these discussions worldwide. In this report, we extract a set of communities from a large dataset of Brazilian political discussion on X, formerly Twitter, spanning just over 6 months across the most recent presidential election cycle. We use these communities to inform an analysis of the link between increased bot activity and heightened toxicity in multiple communities, providing a valuable baseline for further investigations to take place upon. We also present evidence for the general participation of bots across the broadest range of discussion, further raising concern for the validity of online political discourse.
 	\end{abstract}
 	
 	\vfill
@@ -66,13 +63,13 @@
 
 	\subsection{Background and motivation}
 	\label{subsec:background}
-	In the past two decades, the rise of social media has led the world to become increasingly interconnected, with avenues for discussion of daily news, hobbies, music, and politics often no further away than the smartphones in our pockets. One of the most relevant social media platforms for this form of interpersonal discussion is X, formerly Twitter, a microblogging service designed to share short-form statements or questions and quickly spread these posts and ideas via the engagement of other users amplifying the post themselves. While not necessarily the most popular social media site\parencite{BiggestSocialMedia}, X's post format and engagement options often make it the platform of choice for users seeking discussion along with leaders and figureheads (or at least their PR teams) wishing to more directly engage with their audience.
+	In the past two decades, the rise of social media has led the world to become increasingly interconnected, with avenues for discussion of daily news, hobbies, music, and politics often no further away than the smartphones in our pockets. One of the most relevant social media platforms for this form of interpersonal discussion is X, formerly known as Twitter. X is a microblogging service designed to share short-form statements or questions and quickly spread these posts and ideas via the engagement of other users amplifying the post themselves. While not necessarily the most popular social media site\parencite{BiggestSocialMedia}, X's post format and engagement options often make it the platform of choice for users seeking discussion along with leaders and figureheads - or at least their public relations teams - wishing to more directly engage with their audience.
 	
-	More recently, many major political events around the world point to a more divided society than ever before, with election and major referendum results often coming down to the wire (\textcite{EUReferendumResults}, \textcite{FederalElections2016a}, \textcite{FederalElections2020a}, \textcite{SIGEleicaoResultados}). With this polarisation only becoming more pronounced, alongside the paradigm shift of political discourse and news dissemination taking place online especially with younger people\parencite{shearerSocialMediaOutpaces}, it is now common for people to be loosely or even distinctly aware of the possibility of bad actors attempting to influence the zeitgeist of these discussions through the use of automated actors, or "bots", continually posting opinionated messages or simply strengthening another account's postings. Elon Musk, current CEO of X, more than once attempted to use this very concern of bot presence to back out of his deal to buy the company, at the time still Twitter, by including it in the evidence for a countersuit against Twitter's board forcing him to follow through on the signed contract to buy the company \parencite{MuskPublicVersion}\parencite{elonmusk[@elonmusk]Teslarati20Fake2022}. 
+	More recently, major political events around the world point towards a more divided society than ever before, with election and major referendum results often coming down to the wire (\textcite{EUReferendumResults}, \textcite{FederalElections2016a}, \textcite{FederalElections2020a}, \textcite{SIGEleicaoResultados}). With this polarisation only becoming more pronounced over time, alongside the paradigm shift of political discourse and news dissemination more often taking place online especially with younger people\parencite{shearerSocialMediaOutpaces}, it is now common for voters to be loosely or even distinctly aware of the possibility of bad actors attempting to influence the zeitgeist of these discussions. A common fear is the use of automated actors, or "bots", continually posting opinionated messages or simply strengthening another account's postings to do this. Elon Musk, current CEO and owner of X, more than once attempted to use this very concern of bot presence to back out of his deal to buy the platform, including it as  evidence for a countersuit against X's board \parencite{MuskPublicVersion}\parencite{elonmusk[@elonmusk]Teslarati20Fake2022} who at the time were forcing Musk to follow through on the signed deal. 
 
-	The potential payout for such manipulations is extremely high. For example, with Brazil being the 6th-largest audience for X boasting 22 million unique monthly users\parencite{TwitterGlobalAudience}, convincing some of these users to vote a specific way has the potential to sway elections; the most recent Brazilian presidential election was only won by a margin of approximately 6 million votes\parencite{SIGEleicaoResultados}. Further, the only cost to running these bots is that of some computation time and the creation of the code for them to perform the desired actions - creating accounts on X is free. For any group seeking to influence political discourse or even entire elections, there are very few if any more cost-effective ways to go about it, as evidenced by the interference of Russian groups in the 2016 US presidential elections via X who appear to have used bots to amplify the messaging of manually operated accounts, most of which were "mostly promoting conservative causes and were, specifically, spreading pro-Trump material."\parencite{badawyAnalyzingDigitalTraces2018}
+	The potential payout for such manipulations is extremely high. For example, with Brazil being the 6th-largest audience for X boasting 22 million unique monthly users\parencite{TwitterGlobalAudience}, convincing some of these users to vote a specific way has the potential to sway elections - the most recent Brazilian presidential election was only won by a margin of approximately 6 million votes\parencite{SIGEleicaoResultados}. Further, the only cost to running these bots is that of some computation time and the development of their code - creating accounts on X is free\footnote{In the closing days of editing this report, Musk announced plans to charge newly-created accounts for the ability to post to the platform\parencite{espositoElonMuskConfirms2024}. However, it is unclear how exactly this will prevent bot accounts from being created in advance of their usage, and groups with sufficient funding (such as wealthy governments) can simply pay the price of entry.}. For any group seeking to influence political discourse or even entire elections, there are very few if any more cost-effective ways to go about it. This is evidenced by the interference of Russian groups in the 2016 US presidential elections via X, who appear to have used bots to amplify the messaging of manually operated accounts - most of which were "mostly promoting conservative causes and were, specifically, spreading pro-Trump material."\parencite{badawyAnalyzingDigitalTraces2018}
 	
-	It is for all of these reasons that we present the following work; we hope to further investigate automated posts concerning Brazilian politics on X with a specific focus on the trends of toxicity between different discussions, topics, and communities. While proving a link between any two of political leaning, bot postings, and average toxicity is unlikely, we hope that the exploration of such a subject may provide a more nuanced view on how these automated accounts may attempt to influence discourse in the modern day.
+	It is for all of these reasons that we present the following work; we hope to further investigate automated posts concerning Brazilian politics on X with a specific focus on the trends of toxicity between different discussions, topics, and communities. While proving a link between any two of political leaning, bot postings, and average toxicity is unlikely, we hope that the exploration of such a subject may provide a more nuanced view on how these automated accounts may attempt to influence online political discourse in the modern day.
 
 	\subsection{Specification}
 	\label{subsec:spec}
@@ -95,11 +92,11 @@
 	\subsection{Overview}
 	\label{subsec:overview}
 	The data used for the project was provided by Diogo Pacheco, who advised on this work and has extensive experience in the field (\textcite{pachecoBotsElectionsControversies2023}, \textcite{pachecoUncoveringCoordinatedNetworks2021}, \textcite{chenNeutralBotsProbe2021},
-	\textcite{pachecoUnveilingCoordinatedGroups2020}). The dataset in total comprises 437 million X posts made by 13 million unique users between August 2018 and March 2023. These tweets are stored in a raw JSON format. A wealth of metadata about each individual tweet is also recorded alongside its original text in these JSON files. The data is recorded in blocks comprising a day each and are labelled appropriately. 
-	Pacheco also provided a set of PKL files he had used in his own work before, these files containing a preprocessed PKL version of most (but not all) of the raw JSON files. Not all days with a JSON file have a corresponding PKL file, and vice versa.
-	\subsection{Collection}
+	\textcite{pachecoUnveilingCoordinatedGroups2020}). The dataset in total comprises 437 million X posts made by 13 million unique users between August 2018 and March 2023. These posts are stored in a raw JSON format. A wealth of metadata about each individual post is also recorded alongside its original text in these JSON files. The data is recorded in files each containing a day of data each, and are labelled appropriately. 
+	Pacheco also provided a set of PKL\footnote{PKL, or "pickle": Python-exclusive binary file type used to contain arbitrary data. Extremely efficient in storage space, but can only be effectively "unpickled" by a Python script.} files he had used in his own work previously, these files containing a preprocessed version of most (but not all) of the raw JSON files. Not all days with a JSON file have a corresponding PKL file, and vice versa.
+	\subsection{Collection terms}
 	\label{subsec:terms}
-	The data was collected via the Twitter Streaming API before its shutdown in March 2023. The dataset contains tweets collected from a set of keywords themed around Brazilian political discourse, chosen by Pacheco at the beginning of the collection period.
+	The data was collected via the Twitter Streaming API before its shutdown in March 2023. The dataset contains posts collected from a set of keywords themed around Brazilian political discourse, chosen by Pacheco at the beginning of the collection period.
 	
 	Posts were also collected directly from candidate accounts, from posts containing the full name of any candidate, and from posts containing the official hashtag of each candidate's campaign. In July 2022, the collection was adjusted to include posts made by official party accounts; this is the only time the collection terms changed across the 5 years.
 	
@@ -107,19 +104,21 @@
 	\label{sec:design}
 	\subsection{Basic data filtering}
 	\label{subsec:filters}
-	Some caveats apply to the data that was carried through to the final analysis. As the provided JSON files do not contain a botscore for each post, and the PKL files do not contain the original text of the post, we are limited to only using days which have files of both types due to the nature of our analysis (\autoref{sec:results}). Further, the sheer size of the dataset requires us to thin the data in order to perform meaningful analysis within a reasonable time frame (see \autoref{subsec:toxicity}). We chose at this point to work with the data beginning July 2022 and ending March 2023, at the single point the collection terms were adjusted. This range of dates contains 122 total days with corresponding PKL and JSON files, representing a total of 86,787,095 posts for analysis; approximately 20\% of the entire available dataset. 
+	Some caveats apply to the data that was carried through to the final analysis. As the provided JSON files do not contain a botscore for each post, and the PKL files do not contain the original text of the post, we are limited to only using days which have files of both types due to the nature of our analysis. Further, the sheer size of the dataset requires us to thin the data in order to perform meaningful analysis within a reasonable time frame (see \autoref{subsec:toxicity}). We chose at this point to work with the data beginning July 2022 and ending March 2023, after the single collection term adjustment. This range of dates contains 122 total days with corresponding PKL and JSON files, representing a total of 86,787,095 posts for analysis; approximately 20\% of the entire available dataset. 
 	
-	At this point we removed posts that contained no hashtags at all, along with all "retweets". Posts without hashtags are irrelevant for our analysis, and a "retweet" is an posting action common on X, which effectively shares the original content of the post again. As these retweets are exact copies of the original, they can be safely removed for the purposes of our analysis. We elected to keep "quote tweets", which are actions similar to retweets but which allow the reposting account to add their own unique comment alongside the original text, which can then itself be retweeted or quoted. These posts were kept as the extra comment may include other hashtags the author has added, thereby making the post relevant for our analysis.
+	At this point we removed posts that contained no hashtags at all, along with all reposts. Posts without hashtags are irrelevant for our analysis, and a repost is a special posting action common on X. Reposts effectively share the original content of the post again to the reposter's followers. As these reposts are exact copies of the original, they can be safely removed for the purposes of our analysis. We elected to keep quoted posts, which are actions similar to reposts but which allow the reposting account to add their own unique comment alongside the original text. This quoted post can then itself be reposted or quoted. These quote posts were kept as the extra comment may include other hashtags the author has added, thereby making the post relevant for our analysis.
 
 	\subsection{Collocations}
 	\label{subsec:collocation}
-	The planned analysis of hashtags and their attributes called for the construction of a collocation network. The algorithm for this work is fairly simple, and naturally involves filtering the dataset to a smaller size. First, we must take each post with 2 or more hashtags in it; this is easily accomplished as the PKL files contain the hashtags within each tweet. We can then sort the hashtags (to prevent reversed instances of the same pairs) and generate the pairwise combinations of hashtags possible from the list of hashtags in each tweet.
+	The planned analysis of hashtags and their attributes called for the construction of a collocation network. The algorithm for this work is fairly simple, and naturally involves filtering the dataset to a smaller size. First, we must take each post with 2 or more hashtags in it; this is easily accomplished as the PKL files contain the hashtags within each tweet. We can then sort the hashtags (to prevent reversed instances of the same pairs) and generate the pairwise combinations possible from the list of hashtags for each post.
 	
-	Recording the number of occurrences of these pairwise combinations constructs a collocation matrix; at the same time, we can track the number of times each hashtag appears in total to a separate "appearances" matrix. Respectively, these matrices act as edge and node tables, with the appearances of each collocation representing an edge weight and the appearances of each hashtag supporting a deeper analysis. 
+	Recording the number of occurrences of these pairwise combinations constructs a collocation matrix; at the same time, we can track the number of times each hashtag appears in total to a separate "appearances" matrix. Respectively, these matrices act as edge and node tables, with the appearances of each collocation representing an edge weight and the appearances of each hashtag supporting a deeper analysis. For those unfamiliar with the terminology of graph theory, please refer to \autoref{app:networks}.
 
 	\subsection{Modularity}
 	\label{subsec:modularity}
-	These edge and node tables can then be loaded into a network analysis program such as Gephi\parencite{GephiOpenGraph}. Using Gephi, we can inspect and analyse the data we have already found. In order to increase the clarity of investigation, at this time we chose to filter out all hashtags (and therefore their collocations) which appeared less than 1,000 times in total. This reduces the size of the network from 134,633 to 1,943 unique hashtags, a 98.5\% reduction. This same action also reduces the number of edges from 1,065,768 to 153,444, an 85.6\% reduction. With only 1.5\% of original nodes visible, nearly 15\% of original edges are still visible; these observations together show us that the most important nodes have by far the most connections with one another, and these "smaller" nodes can be filtered out safely. The filter increases the relative "importance" of each node by removing smaller nodes which dilute the analysis; we can now be sure that each and every one of these hashtags is discussed in a significant manner. It should be especially noted that filtering out hashtags which appear less than 100 times across these 122 days results in a 93\% reduction in nodes, further proving that the vast majority of hashtags are not especially relevant to everyday discussion in online Brazilian political discourse and can safely be ignored for our analysis.
+	These edge and node tables can then be loaded into a network analysis program such as Gephi\parencite{GephiOpenGraph}. Using Gephi, we can inspect and analyse the data we have already found. In order to increase the clarity of investigation, at this time we chose to filter out all hashtags (and therefore their collocations) which appeared less than 1,000 times in total. This reduces the size of the network from 134,633 to 1,943 unique hashtags, a 98.5\% reduction. This same action also reduces the number of edges from 1,065,768 to 153,444, an 85.6\% reduction. With only 1.5\% of original nodes visible, nearly 15\% of original edges are still visible; these observations together show us that the most important nodes have by far the most connections with one another, and these "smaller" nodes can be filtered out safely. 
+	
+	The filter increases the relative "importance" of each node by removing smaller nodes which dilute the analysis; we can now be sure that each and every one of these hashtags is discussed in a significant manner. It should be especially noted that filtering out hashtags which appear less than 100 times across these 122 days results in a 93\% reduction in nodes, further proving that the vast majority of hashtags are not especially relevant to everyday discussion in online Brazilian political discourse and can safely be ignored for our analysis.
 	
 	With this filtering complete, we can run a modularity analysis on the graph with Gephi. Modularity analysis is a methodology for detecting communities in graphs with weighted edges. Gephi implements the Louvain-style modularity analysis, which finds communities by recursively taking the aggregate result of a smaller community-detection function \parencite{Findcommunities}. The result of this process is that each hashtag node will have a modularity class assigned to it, denoting the community it primarily belongs to. For our hashtag network, the Louvain analysis found 18 unique communities.
 
@@ -134,7 +133,7 @@
 		\item Run each preprocessed text through a pre-trained machine learning model to determine whether the post is toxic or not.
 		\item For each hashtag, collect all posts containing that hashtag and calculate the mean toxicity of the posts. This score is then a floating point representing the likelihood of a post containing the hashtag to be toxic.
 	\end{enumerate}
-	The pre-trained machine learning model used was ToLD-Br, a "pre-trained Multilingual BERT fine-tuned with ToLD-Br" \parencite{leiteToxicLanguageDetection2020}. ToLD-Br is provided as open-source under the Creative Commons BY-SA 4.0 license, and allows us to use previous work to greatly accelerate our own. The trained BERT model is a CUDA-accelerated\footnote{CUDA: NVIDIA-owned and maintained framework for offloading repetitive, simple matrix and arithmetic operations to an attached graphics processing unit which excels at such tasks rather than the central processing unit of the computer, which is comparatively much worse at such operations.} binary classification transformer model which, given a text to process, outputs either a "toxic" or "non-toxic" interpretation. The model itself was trained on a dataset of Brazilian Portuguese X posts; this fits our use case perfectly, and we thank \citeauthor{leiteToxicLanguageDetection2020} for the model's contribution to the project.
+	The pre-trained machine learning model used was ToLD-Br, a "pre-trained Multilingual BERT fine-tuned with ToLD-Br" \parencite{leiteToxicLanguageDetection2020}. ToLD-Br is provided as open-source under the Creative Commons BY-SA 4.0 license, and as such allows us to use a previous work to greatly accelerate our own. The trained BERT model is a CUDA-accelerated\footnote{CUDA: NVIDIA owned and maintained framework for offloading repetitive, simple matrix and arithmetic operations to an attached graphics processing unit which excels at such tasks rather than the central processing unit of the computer, which is comparatively much worse at such operations.} binary classification transformer model which, given a text to process, outputs either a "toxic" or "non-toxic" interpretation. The model itself was trained on a dataset of Brazilian Portuguese X posts; this fits our use case perfectly, and we thank \citeauthor{leiteToxicLanguageDetection2020} for the model's contribution to the project.
 	
 	\subsection{Botscore}
 	\label{subsec:botscore}
@@ -148,46 +147,28 @@
 	\subsection{Hashtag Network}
 	\label{subsec:network}
 
-	\begin{table}[h!]%{L}{9cm}
-		\centering
-		\begin{tabular}{||l l r||} 
-			\hline
-			Colour & Topic & \% of network \\ [0.5ex] 
-			\hline\hline
-			Cyan & Left-wing hashtags & 26.7\% \\ 
-			\hline
-			Red & Right-wing hashtags & 25.8\% \\
-			\hline
-			Pink & Battleground hashtags & 24.5\% \\
-			\hline
-			Yellow & News hashtags & 7.2\% \\
-			\hline
-			Other & All other hashtags & 15.8\% \\
-			\hline
-		\end{tabular}
-		\caption{\autoref{fig:1} and \autoref{fig:2}'s most populous communities. Note that this table only communicates the variety of hashtags, not the quantity of posts made in them.}
-		\label{tab:1}
-	\end{table}
-
 	At this time, the data processing is complete and we can begin our analysis. \hyperref[fig:1]{Figure 1} shows the fully filtered network after running the ForceAtlas 2 layout algorithm to convergence, with each node colour-coded to its modularity class\footnote{For the sake of presentation, the graph was also run through an algorithm preventing nodes from overlapping.}. ForceAtlas 2 is an continuous layout algorithm that works by repulsing all nodes from one another while attracting nodes based on edges\parencite{jacomyForceAtlas2ContinuousGraph2014}, but this work could easily be recreated with any suitable force-directed layout algorithm. In this graph, we can very clearly see the different communities present in our data, noting the presence of 4 "primary" communities\footnote{For more, see \autoref{app:modularities}}, shown in \autoref{tab:1}.
 
-	The size of each hashtag is directly taken from the its number of appearances. We can easily identify central hashtags that appear often in their communities; the largest right-wing hashtag is "bolsonaro22", the official campaign hashtag for Jair Bolsonaro. Likewise, the largest left-wing hashtag is "lula13", Lula da Silva's official campaign hashtag. The largest battleground hashtags are those that are relevant to both of the previous communities; terms such as "eleicoes22" (election22), "brasil", "riodejaneiro", and news hashtags include "globonews" (popular Brazilian news network), "nytimes", and "blacklivesmatter".
+	The size of each hashtag is directly taken from the its number of appearances. We can easily identify central hashtags that appear often in their communities; the largest right-wing hashtag is "bolsonaro22", the official campaign hashtag for Jair Bolsonaro. Likewise, the largest left-wing hashtag is "lula13", Lula da Silva's official campaign hashtag. The largest battleground hashtags are those that are relevant to both of the previous communities; terms such as "eleicoes22" (election22), "brasil", and "riodejaneiro", all of which are topics and conversations that both left-wing and right-wing communities are likely to take part in - this is the essence of what makes a hashtag a "battleground". News hashtags include "globonews" (popular Brazilian news network), "nytimes", and "blacklivesmatter".
 
-	\begin{figure}
+	\begin{figure}%[ht]
 		\centering
 		\includegraphics[height=0.5\textheight]{images/net_mod_app}
 		\caption{Hashtag network, nodes coloured to modularity class (community) and ForceAtlas 2 layout applied. Notable communities in the network include right-wing terms (red, upper right), left-wing terms (cyan, middle left), "battleground" terms (pink, lower central leaning right), and news-related terms (yellow, upper central leaning left). The size of each node directly correlates to how many times it appears in the data set relative to other hashtags.\hfill}
 		\label{fig:1}
 	\end{figure}
 
-	\begin{figure}
+	\begin{figure}%[hb]
 		\centering
 		\includegraphics[height=0.3\textheight]{images/net_mod_app_detail}
 		\caption{Zoomed view of \autoref{fig:1}'s central region with labels enabled.}
 		\label{fig:2}
 	\end{figure}
+
+	\autoref{fig:3} shows the same network as in \autoref{fig:1}, but with the node sizes altered to visualise toxicity and bot activity across the network - larger nodes mean a higher likelihood of the hashtag being contained within a toxic post (\autoref{fig:3a}) or having been made by a suspected bot (\autoref{fig:3b}). 
 	
-	\begin{figure}
+	
+	\begin{figure}%[h]
 		\centering
 		\begin{subfigure}[t]{0.48\textwidth}
 			\centering
@@ -205,24 +186,45 @@
 		\label{fig:3}
 	\end{figure}
 
-	\autoref{fig:3} shows the same network as in \autoref{fig:1}, but with the node sizes altered to visualise toxicity and bot activity across the network - larger nodes mean a higher likelihood of the hashtag being contained within a toxic post (\autoref{fig:3a}) or having been made by a suspected bot (\autoref{fig:3b}). 
+	\begin{table}%[hb]%{L}{9cm}
+		\centering
+		\begin{tabular}{||l l r||} 
+			\hline
+			Colour & Topic & \% of network variety \\ [0.5ex] 
+			\hline\hline
+			Cyan & Left-wing hashtags & 26.7\% \\ 
+			\hline
+			Red & Right-wing hashtags & 25.8\% \\
+			\hline
+			Pink & Battleground hashtags & 24.5\% \\
+			\hline
+			Yellow & News hashtags & 7.2\% \\
+			\hline
+			Other & All other hashtags & 15.8\% \\
+			\hline
+		\end{tabular}
+		\caption{\autoref{fig:1} and \autoref{fig:2}'s most populous communities. Note that this table only communicates the variety of hashtags, not the quantity of posts made in them.}
+		\label{tab:1}
+	\end{table}
 	
 	We can see from a visual inspection that these metrics differ in intriguing ways; toxicity peaks in localised areas of discussion, shown in the many groups of large nodes most visible in the left-wing and right-wing communities separated by gulfs of smaller nodes. Contrastingly, \autoref{fig:3b} implies that nearly all hashtags in our dataset have a base level of bot activity present, with the vast majority of nodes notably larger than the minimum size commonly seen in \autoref{fig:3a}. We can easily confirm this observation, empirically speaking, by comparing the standard deviation of each metric across the whole network. Botscore admits a standard deviation of 0.08, whereas toxicity lies at a much higher 0.22, ratifying our suspicions. We now continue to determine whether this phenomenon may be affected by bots acting as pacifiers and/or agitators.
 	
 	\subsection{Bots and Toxicity}
 	\label{subsec:bottox}
 	
-	\begin{figure}
+	To further explore the data, we simply plot a graph of botscore against toxicity. Sorting all hashtags by their toxicity and calculating an average value, weighted by number of appearances, in a fixed number of regions allows us to directly explore a potential correlation between botscore and toxicity. \autoref{fig:4} shows this graph and informs us of a distinct lack of correlation across the dataset, the mean line largely lying flat. We can, however, see that the vast majority of conversation appears within a densely populated zone between 0.20 and 0.40 toxicity, hovering just below a botscore of 0.30. All together, the shape of the graph somewhat resembles a saddle; this saddle is shown in a pair of faintly drawn parabolas, so as not to distract too heavily from the graph. This effect leaves a deadzone at low botscores in hashtags with moderately high toxicities of 0.40 to 0.60; the implication is that moderately toxic hashtags attract a moderate bot presence. 
+
+	\begin{figure}%[h]
 		\begin{center}
 			\includegraphics[width=0.9\textwidth]{images/plt_tox_bot_mod}
 		\end{center}
 		\caption{Scatter graph showing the toxicity and botscore of each hashtag. Sizes of nodes correspond to how many posts included the hashtag (the number of "appearances"), and colours show modularity/community.}
 		\label{fig:4}
 	\end{figure}
-		
-	To further explore the data, we simply plot a graph of botscore against toxicity. Sorting all hashtags by their toxicity and calculating an average value, weighted by number of appearances, in a fixed number of regions allows us to directly explore a potential correlation between botscore and toxicity. \autoref{fig:4} shows this graph and informs us of a distinct lack of correlation across the dataset, the mean line largely lying flat. We can, however, see that the vast majority of conversation appears within a densely populated zone between 0.20 and 0.40 toxicity, hovering just below a botscore of 0.30. All together, the shape of the graph somewhat resembles a saddle; this saddle is shown in a pair of faintly drawn parabolas, so as not to distract too heavily from the graph. This effect leaves a deadzone at low botscores in hashtags with moderately high toxicities of 0.40 to 0.60; the implication is that moderately toxic hashtags attract a moderate bot presence. 
+
+	With this saddle shape in mind, we notice a group of anomalies with notably high botscores at moderate toxicities. These hashtags mostly belong to the "battleground" modularity, with only two from the left-wing modularity. These two are \textit{"13elevoltara"} and \textit{"simboracomlula13"} boasting botscores of 0.75 and 0.74 respectively, meaning \textit{"13 will return"} and \textit{"let's go with lula 13"}. Both of these hashtags are in support of the left-wing presidential candidate Lula da Silva, implying an actor attempted to increase support of the left-wing candidate using bots to amplify their messaging. 
 	
-	With this saddle shape in mind, we can notice a group of anomalies with notably high botscores at moderate toxicities. These hashtags mostly belong to the "battleground" modularity, with only two from the left-wing modularity. These two are \textit{"13elevoltara"} and \textit{"simboracomlula13"} boasting botscores of 0.75 and 0.74 respectively, meaning \textit{"13 will return"} and \textit{"let's go with lula 13"}. Both of these hashtags are in support of the left-wing presidential candidate Lula da Silva, implying an actor attempted to increase support of the left-wing candidate using bots to amplify their messaging. 
+	The remaining anomalies are mostly connected to one another in a local network, shown in \autoref{fig:5}. Some refer to regions, such as \textit{"europe"} or \textit{"africa"}, but most of these anomalously high botscore hashtags concern Jair Bolsonaro or "presidential reform". In the context of when the data was collected, Bolsonaro at the time had been in power for 30-36 months and was approaching the end of his term, with our data comprised of discussion surrounding the election which resulted in his defeat by Lula da Silva. As such, notable connections in this network sit between \textit{"nazismo"} (Nazism), \textit{"zionismo"} (Zionism), and two of Bolsonaro's sons' names (Eduardo and Carlos Bolsonaro), both of whom are also involved in Brazilian politics. 
 	
 	\begin{figure}%{R}{0.5\textwidth}
 		\begin{center}
@@ -231,15 +233,17 @@
 		\caption{Detail view of the battleground anomalies network.}
 		\label{fig:5}
 	\end{figure}
-	
-	The remaining anomalies are mostly connected to one another in a local network, shown in \autoref{fig:5}. Some refer to regions, such as \textit{"europe"} or \textit{"africa"}, but most of these anomalously high botscore hashtags concern Jair Bolsonaro or "presidential reform". In the context of when the data was collected, Bolsonaro at the time had been in power for 30-36 months and was approaching the end of his term, with our data comprised of discussion surrounding the election which resulted in his defeat by Lula da Silva. As such, notable connections in this network sit between \textit{"nazismo"} (Nazism), \textit{"zionismo"} (Zionism), and two of Bolsonaro's sons' names (Eduardo and Carlos Bolsonaro), both of whom are also involved in Brazilian politics. 
-	
+
 	A manual check also reveals that \textit{"nazismo"} and \textit{"zionismo"} both connect to \textit{"bolsonaro"} and \textit{"jairbolsonaro"}, with many of \autoref{fig:5}'s connections appearing exactly 288 times (or within 10\% above 288, never below), shown in the thickness of each edge between nodes. It is fairly likely that these hashtags were levelled as insults against Bolsonaro by a small populace of automated accounts, evidenced by the very high botscore and similar appearance numbers hovering at or just above 288. Many Brazilians dislike Bolsonaro for controversial actions surrounding deforestation of the Amazon rainforest, his handling of the Covid-19 pandemic, and other smaller campaign-related controversies (\parencite{BrazilianAmazonDeforestation}, \parencite{trevisaniBrazilBolsonaroFires2019}, \parencite{dupeyronJustTrumpBrazil2020}, \parencite{BrazilMilitaryChiefs2021}, \parencite{phillipsBrazilJairBolsonaro2018}), though simply existing as a political opponent opens motivation for manipulating opinions as discussed in \autoref{subsec:background}. 
 	
 	These manipulations may even have been orchestrated by the same actor responsible for amplifying the messaging of \textit{"simboracomlula13"}, using the same techniques to slander Bolsonaro and make him appear a worse fit for the presidential seat. The only reason we have noticed these manipulations is that the botscore of these hashtags appeared notably high, with few "real" people including these hashtags in their discussions; we put forward that similar manipulations are in effect across the dataset, being obscured by the activity of real users. Further, in this case, this anomalous network acts as evidence towards our first hypothesis that bots are being utilised to influence political discussions to become more toxic; hurling insults over the internet is not usually seen as a level-headed gesture.
 	
 	\subsection{Partitioning by Modularity}
-	\begin{figure*}
+
+	In this section, we partition the dataset by modularity and perform a similar analysis as in \autoref{subsec:bottox}, but within the two primary communities (left-wing and right-wing) rather than across all processed data. \autoref{fig:6} shows a scatter graph of each major community's points as in \autoref{fig:4} split out to their own graphs with their own mean lines applied. Each mean is calculated as a weighted average, using each hashtag's appearances relative to others as the weighting.
+	Each community has its own characteristics shown in the mean line plotted on each graph.
+	
+	\begin{figure*}%[h]
 		\centering
 		\begin{subfigure}[b]{0.475\textwidth}
 			\centering
@@ -289,12 +293,13 @@
 		\label{fig:6}
 	\end{figure*}
 
-	In this section, we partition the dataset by modularity and perform a similar analysis as in \autoref{subsec:bottox}, but within the two primary communities (left-wing and right-wing) rather than across all processed data. \autoref{fig:6} shows a scatter graph of each major community's points as in \autoref{fig:4} split out to their own graphs with their own mean lines applied. Each mean is calculated as a weighted average, using each hashtag's appearances relative to others as the weighting.
-	Each community has its own characteristics shown in the mean.
-
 	\subsubsection{Left-wing community analysis}
+
+	Left-wing hashtags stay at roughly the same botscore across toxicities, but with a curve upwards at the end likely influenced by the single large hashtag at near-max toxicity. A closer inspection reveals that this is not a single hashtag, but a group of abnormally high botscore hashtags at the highest toxicity values present in the whole dataset. 
 	
-	\begin{figure}%{R}{0.5\textwidth}
+	This local network is shown in \autoref{fig:7}, and shows how deeply connected these hashtags are. With the size of each node keyed to its appearances, we even notice that all of these hashtags except one boast between 23,000 and 24,000 appearances, the exception having 16,175. Further, many of these connections have weights of exactly 1,753 or 1,754 appearances together, implying that when two of these hashtags were used the others were extremely likely to follow. These close numbers, deeply linked connections, and the high botscore when compared against the rest of the left-wing data together suggest a discussion being deeply influenced by bots. Not only this, but the very high toxicity of these hashtags further suggests these bots may be acting to reinforce a toxic discussion already occurring; at the very least, they aren't helping, otherwise the toxicity of the local network would be lower - the average toxicity of this local network is 0.991, with each hashtag in the top 1\% most toxic in the dataset.
+	
+	\begin{figure}[h]%{R}{0.5\textwidth}
 		\begin{center}
 			\includegraphics[width=0.6\textwidth]{images/net_leftwing_hightox_highbot}
 		\end{center}
@@ -302,14 +307,12 @@
 		\label{fig:7}
 	\end{figure}
 
-	Left-wing hashtags stay at roughly the same botscore across toxicities, but with a curve upwards at the end likely influenced by the single large hashtag at near-max toxicity. A closer inspection reveals that this is not a single hashtag, but a group of abnormally high botscore hashtags at the highest toxicity values present in the whole dataset. 
-	
-	This local network is shown in \autoref{fig:7}, and shows how deeply connected these hashtags are. With the size of each node keyed to its appearances, we even notice that all of these hashtags except one boast between 23,000 and 24,000 appearances, the exception having 16,175. Further, many of these connections have weights of exactly 1,753 or 1,754 appearances together, implying that when two of these hashtags were used the others were extremely likely to follow. These close numbers, deeply linked connections, and the high botscore when compared against the rest of the left-wing data together suggest a discussion being deeply influenced by bots. Not only this, but the very high toxicity of these hashtags further suggests these bots may be acting to reinforce a toxic discussion already occurring; at the very least, they aren't helping, otherwise the toxicity of the local network would be lower - the average toxicity of this local network is 0.991, with each hashtag in the top 1\% most toxic in the dataset.
-	
 	The overall topic of these hashtags lends itself to a toxic discussion. The overall tone is assertive and accusatory, many of these posts likely made during the autumn 2022 presidential election campaigns: \textit{"Bolsonaro hates the poor"}, \textit{"pedophilia out"}, \textit{"fascism out"}, \textit{"don't mess with retirement"}, and \textit{"he was a liar"} are some translated examples from this network. Our earlier observations indicated a discussion highly influenced by bot activity, though these discussion topics and accusations can be expected to begin organically in a modern day election cycle online. Furthermore, the disparity between edge weights and appearances implies these hashtags are often used outside of this deeply linked network in other discussions elsewhere in the network. As such, we can conclude that this is most likely a case of bots being used to amplify a toxic discussion and spread these opinions further rather than bots being utilised to begin one from scratch, potentially leveraging these hashtags to gain a greater reach and influence. These findings further support our hypothesis in \autoref{subsec:bottox} that bot manipulations are easily obscured by the postings of real users, along with reinforcing our earlier suspicion that bots are indeed influencing political discussions to become more toxic.
 	
 	\subsubsection{Right-wing community analysis}
-	\begin{table}
+	In contrast to the flat mean of the left-wing network previously discussed, the right-wing network demonstrates a moderate negative correlation between toxicity and botscore with a slight upturn in botscore at the highest toxicities. On a visual inspection, the right-wing network appears to contain more hashtags at the higher end of the toxicity scale. We can investigate this difference by calculating the mean and median of both botscore and toxicity for each community, shown in \autoref{tab:2}.
+
+	\begin{table}[h]
 		\begin{center}
 			\begin{tabular}{||l | r | r | r | r||}
 				\hline
@@ -332,41 +335,41 @@
 			\label{tab:2}
 		\end{center}
 	\end{table}
-	In contrast to the flat mean of the left-wing network previously discussed, the right-wing network demonstrates a moderate negative correlation between toxicity and botscore with a slight upturn in botscore at the highest toxicities. On a visual inspection, the right-wing network appears to contain more hashtags at the higher end of the toxicity scale. We can investigate this difference by calculating the mean and median of both botscore and toxicity for each community, shown in \autoref{tab:2}.
-	
+
 	As suspected, when compared to other focused communities, the right-wing community has a notably higher mean and median toxicity, with mean and median botscores in the expected range. Note in this case that "other" hashtags also have a very high toxicity; this is due to the varied and unfocused discussion occurring across the remaining 14 communities which all in all comprise only 15.8\% of the data's variety (\autoref{tab:1}); furthermore, the right-wing community has a direct counterpart in the left-wing, and as such we continue our inspection of this comparatively high toxicity. While a similar upturn occurs at the high end of toxicity as in the left-wing community, the intensity of the right-wing's equivalent is much lower with a manual inspection revealing many much less popular hashtags appearing to bring this line upwards. With this finding in mind, along with the mean botscore steadily lowering as toxicity increases, we show that these right-wing discussions appear to simply trend towards toxicity without any notable bot influence attempting to coerce the discussion towards it; in fact, these toxic discussions consistently contain less bots the more toxic they become. 
 	
 	We now check this finding by inspecting the weighted standard deviations of each community across toxicities. \autoref{fig:6f} shows this plot, demonstrating that the right-wing community is overall one of the closest-fitting to the baseline data. However, as toxicity rises we also see the standard deviation rise steadily. This curve shows us that, at the highest toxicities, there is a wide range of hashtags with both high and low botscores active in the community. For this reason, we can say in this case that fringe communities of bots are attempting to influence political discussions on the right to become more toxic. 
 	
 	The affected hashtags at this highest end of toxicity include \textit{"capitaobolsonaro"}, \textit{"stfmilitarjá"}, \textit{"eleicoessemsacanagem"}, and \textit{"capitaoparaobemdanacao"}, all of which have appearances totalling between 4,000 and 5,000. While not obvious or egregious as the similar anomaly network in the left-wing graph, we can consider this a very similar case of bots amplifying a toxic message. The translated hashtags are \textit{"captain Bolsonaro"}, \textit{"STF military now"}, \textit{"elections without bullshit"}, and \textit{"captain for the good of the country"}, clearly referring to Bolsonaro again. 
 	
-	\textit{"Elections without bullshit"} is reminiscent of slogans adopted by western alt-right political movements concerning election fraud such as \textit{"stop the steal"}, popularised by the high-profile defeat of Donald Trump in the American 2020 presidential election\parencite{FederalElections2020a} and his following campaign to overturn the result on claims of voter fraud\parencite{rutenberg77DaysTrump2021}, \parencite{ruparTrumpDesperateSTOP2020}, eventually culminating in the attack on the American political centre of the Capitol on January 6th, 2021 \parencite{JanuaryAttackCapitol}, \parencite{JanuaryCapitolAttack2024}. Similarly, \textit{"STF"} refers to the Brazilian Supreme Federal Court\parencite{STJInternationalSuperior}; due to the extremely high toxicity of the hashtag, it's possible these posts were attempting to incite violence against members of the court or prompt the STF to "use" the military in some degree, a line of thinking potentially borrowed once again from Trump and his supporters' militarisation \parencite{lohStopStealLeader},\parencite{sonmezFrustratedTrumpRedoubles2020}. 
+	\textit{"Elections without bullshit"} is reminiscent of slogans adopted by western alt-right political movements concerning election fraud such as \textit{"stop the steal"}, popularised by the high-profile defeat of Donald Trump in the American 2020 presidential election\parencite{FederalElections2020a} and his following campaign to overturn the result on claims of voter fraud\parencite{rutenberg77DaysTrump2021}, \parencite{ruparTrumpDesperateSTOP2020}, eventually culminating in the attack on the American political centre of the Capitol on January 6th, 2021 \parencite{JanuaryAttackCapitol}, \parencite{JanuaryCapitolAttack2024}. Similarly, \textit{"STF"} refers to the Brazilian Supreme Federal Court\parencite{STJInternationalSuperior}; due to the extremely high toxicity of the hashtag, it's possible these posts were attempting to incite violence against members of the court or prompt the STF to "use" the military in some degree, a line of thinking potentially borrowed once again from Trump and his supporters' militarisation \parencite{lohStopStealLeader},\parencite{sonmezFrustratedTrumpRedoubles2020}. As further evidence, \textit{"captain Bolsonaro"} and \textit{"captain for the good of the country"} appear to idolise Bolsonaro, depicting him almost as a military leader guiding the populace towards a better future.
 	
-	With the topic of these most common toxic right-wing hashtags in mind, we can conclude once again that communities of bots are attempting to amplify incendiary ideas and topics across the wider spectrum of discussion.
+	With the botscores and topics of these most common toxic right-wing hashtags in mind, we can conclude once again that communities of bots are attempting to amplify incendiary ideas and topics across the wider spectrum of discussion.
 	
 	\subsection{Frequency Analysis}
-	\begin{figure}%{R}{0.5\textwidth}
+	We conclude our analysis with a deeper look into the frequency of hashtags used across time. \autoref{fig:8} depicts the graph of posts made over time in the data, while \autoref{fig:9} takes a more focused approach into each major community. At a basic inspection of \autoref{fig:8}, we see quickly that the month of October 2022 sees greatly inflated posting numbers correlating to the presidential election on 2 October 2022, concluding in the runoff election on 30 October 2022 deciding the presidential winner after the 2 October election failed to determine a winning candidate with more than 50\% of votes. After these events, activity sharply drops to pre-election levels. The smaller spikes in August correspond to the beginning of the election cycle on 16 August 2022, with the first presidential debate taking place on the 28th of the same month.
+	
+	\begin{figure}%[h]%{R}{0.5\textwidth}
 		\begin{center}
 			\includegraphics[width=0.8\textwidth]{images/plt_major_appearances}
 		\end{center}
-		\caption{Graph of cumulative hashtag frequency over time. Note the spikes at the beginning and end of October coinciding with the dates of the presidential election (2 October 2022) and the secondary runoff election (30 October 2022) used to break the tie of the first.}
+		\caption{Graph of cumulative-by-day hashtag frequency over time. Note the spikes at the beginning and end of October coinciding with the dates of the presidential election (2 October 2022) and the secondary runoff election (30 October 2022) used to break the tie of the first.}
 		\label{fig:8}
 	\end{figure}
 	
-	\begin{figure*}%{R}{0.5\textwidth}
+	From \autoref{fig:9}, we can determine that botscore stays relatively constant across all postings over time in all communities, with small spikes present mostly in the battleground community. Taken alongside the data shown in \autoref{fig:8}, we can notice that the quantity of posts vastly increases while the mean botscore stays relatively stable. In order for this to be true, bots must be posting content at a proportional rate to the overall frequency of discussion. This insight allows us to further interrogate the motivations of those running these bots; clearly, increasing their combined rate of posting during important election events is not a coincidence, and in fact acts as further evidence for the meddling of automated accounts in these discussions. 
+
+	\begin{figure*}%[h]%{R}{0.5\textwidth}
 		\begin{center}
 			\makebox[\textwidth]{\includegraphics[width=1\paperwidth]{images/plt_major_bydate}}
 		\end{center}
 		\caption{Graphs of botscore against date within each community, with the colouring of nodes depicting toxicity. Botscore means are calculated as a weighted average.}
 		\label{fig:9}
 	\end{figure*}\textbf{}
-	We conclude our analysis with a deeper look into the frequency of hashtags used across time. \autoref{fig:8} depicts the graph of posts made over time in the data, while \autoref{fig:9} takes a more focused approach into each major community. At a basic inspection of \autoref{fig:8}, we see quickly that the month of October 2022 sees greatly inflated posting numbers correlating to the presidential election on 2 October 2022, concluding in the runoff election on 30 October 2022 deciding the presidential winner after the 2 October election failed to determine a winning candidate with more than 50\% of votes. After these events, activity sharply drops to pre-election levels. The smaller spikes in August correspond to the beginning of the election cycle on 16 August 2022, with the first presidential debate taking place on the 28th of the same month.
 	
-	From \autoref{fig:9}, we can determine that botscore stays relatively constant across all postings over time in all communities, with small spikes present mostly in the battleground community. Taken alongside the data shown in \autoref{fig:8}, we can notice that the quantity of posts vastly increases while the mean botscore stays relatively stable. In order for this to be true, bots must be posting content at a proportional rate to the overall frequency of discussion. This insight allows us to further interrogate the motivations of those running these bots; clearly, increasing their combined rate of posting during important election events is not a coincidence, and in fact acts as further evidence for the meddling of automated accounts in these discussions. 
+	Inspecting this data with an eye towards toxicity we notice that, while the right-wing community has been shown to be more toxic overall (\autoref{tab:2}), the left-wing appears to become more toxic - and more affected by bots - around election dates, shown in the left-wing section of \autoref{fig:9} in the days leading up to 30 October 2022. This effect does not appear to be present in the right-wing community, nor any of the others. While the battleground community does have a few suspiciously high botscores around these elections, the overall toxicity of the community appears to be low consistently through the entire election cycle. The disparity between these two primary communities of left-wing and right-wing discussion yet again provides evidence towards our claim that bots are interfering with political discussions to become more toxic, but with a caveat: these bots appear to be picking and choosing, leaving right-wing discussions mostly alone while attempting to more deeply influence left-wing discussions to become more inflammatory. To further confirm this, we inspect the high-toxicity high-botscore hashtags posted on 30 October 2022 - the runoff election date.
 	
-	Inspecting this data with an eye towards toxicity we notice that, while the right-wing community has been shown to be more toxic overall (\autoref{tab:2}), the left-wing appears to become more toxic - and more affected by bots - around election dates, shown in the left-wing section of \autoref{fig:9} in the days leading up to 30 October 2022. This effect does not appear to be present in the right-wing community, nor any of the others. While the battleground community does have a few suspiciously high botscores around these elections, the overall toxicity of the community appears to be low consistently through the entire election cycle. The disparity between these two primary communities of left-wing and right-wing discussion yet again provides evidence towards our claim that bots are interfering with political discussions to become more toxic, but with a caveat: these bots appear to be picking and choosing, leaving right-wing discussions mostly alone (\autoref) while attempting to more deeply influence left-wing discussions to become more inflammatory. To further confirm this, we inspect the high-toxicity high-botscore hashtags posted on 30 October 2022 - runoff election day.
-	
-	Examples of these suspect hashtags include \textit{"lulapresidente2022"}, \textit{"bolsonarismomata"}, \textit{"forabolsonaro"}, and \textit{"bolsonaropedofilo"}, respectively translating to \textit{"President Lula 2022"}, \textit{"Bolsonarism kills"}, \textit{"Bolsonaro out"}, and \textit{"pedophile Bolsonaro"}. Further, we also find once again every single one of the hashtags shown in \autoref{fig:7}.  We can clearly see that many of these hashtags naturally lend themselves to a toxic discussion; boosting their reach and influence with bots serves to increase toxicity while simultaneously supporting Lula da Silva by slandering\footnote{Jair Bolsonaro to our knowledge has not been convicted of pedophilia, though he once did say he "felt a spark" with "14 and 15-year-old girls" in mid-October of 2022\parencite{BolsonaroSaysHe2022}. This is likely where much of the popularity of \textit{"bolsonaropedofilo"} in our data originates.} of the opposing candidate. The exception to these topics is \textit{"lulapresidente2022"}, a seemingly innocent hashtag with a notably high botscore and toxicity of 0.41 and 0.69 respectively in this day. In this case we theorise that due to the high popularity of the hashtag, an attempt by another group to perform a \textit{"hashjack"} may have been performed via bots to undermine left-wing discussion on the election day. A "hashjack" is a coordinated effort to stifle or otherwise repurpose an established discussion for another purpose, most commonly undertaken by alt-right groups \parencite{dariusHowFarRightPolarises2022}.
+	Examples of these suspect hashtags include \textit{"lulapresidente2022"}, \textit{"bolsonarismomata"}, \textit{"forabolsonaro"}, and \textit{"bolsonaropedofilo"}, respectively translating to \textit{"President Lula 2022"}, \textit{"Bolsonarism kills"}, \textit{"Bolsonaro out"}, and \textit{"paedophile Bolsonaro"}. Further, we also find once again every single one of the hashtags shown in \autoref{fig:7}.  We can clearly see that many of these hashtags naturally lend themselves to a toxic discussion; boosting their reach and influence with bots serves to increase toxicity while simultaneously supporting Lula da Silva by slandering\footnote{Jair Bolsonaro to our knowledge has not been convicted of paedophilia, though he once did say he "felt a spark" with "14 and 15-year-old girls" in mid-October of 2022\parencite{BolsonaroSaysHe2022}. This is likely where the popularity of \textit{"bolsonaropedofilo"} in our data originates.} of the opposing candidate. The exception to these topics is \textit{"lulapresidente2022"}, a seemingly innocent hashtag with a notably high botscore and toxicity of 0.41 and 0.69 respectively in this day. In this case we theorise that due to the high popularity of the hashtag, an attempt by another group to perform a \textit{"hashjack"} may have been performed by coordinated bots to undermine left-wing discussion on the election day. A "hashjack" is a coordinated effort to stifle or otherwise repurpose an established discussion for another purpose, most commonly undertaken by alt-right groups \parencite{dariusHowFarRightPolarises2022}.
 	
 	\section{Limitations and Further Work}
 	\subsection{Computation time}
@@ -380,7 +383,7 @@
 		\item Full dataset, August 2018 to March 2023 (approx. 437 million posts)
 		\item Recent data after collection term adjustment, July 2022 to March 2023 (80,688,513 posts)
 		\item Only posts containing hashtags (7,806,357 posts)
-		\item Removed all "retweets" (3,523,010 posts)
+		\item Removed all reposts (3,523,010 posts)
 		\item Only posts which contain a hashtag either:
 		\begin{itemize}
 			\item directly appearing in the modularity class related to left-wing or right-wing posts (\autoref{subsec:modularity}),
@@ -477,10 +480,11 @@
 	\end{itemize}
 	These specifications were sufficient for the computations being performed, but given a more powerful computer it is possible that the analysis could have been deepened. All data was stored on a high quality NVME M.2 solid-state drive connected directly to the motherboard.
 	
-	It is possible that with more foresight, access could have been gained to a more powerful device such as Exeter University's ISCA supercomputer. However, it is the our belief that by the time we realised this level of computation power would be useful, it would take longer to gain access and learn to use ISCA's systems than it would to simply run the calculations locally.
+	It is possible that with more foresight, access could have been gained to a more powerful device such as Exeter University's ISCA supercomputer. However, it is our belief that by the time we realised this level of computation power would be useful, it would take longer to gain access and learn to use ISCA's systems than it would to simply run the calculations locally.
 	\section{Modularity classes}
 	\label{app:modularities}
 	This appendix contains the full list of modularity classes discovered by the Louvain analysis and the author's best interpretation of what each community represents. Note that the actual modularity class value is arbitrary and assigned during the Louvain analysis.
+	
 	\begin{center}
 		\begin{tabular}{||l l l r||} 
 			\hline
@@ -524,6 +528,14 @@
 			\hline
 		\end{tabular}
 	\end{center}
+	
+	\section{Graph theory vocabulary}
+	\label{app:networks}
+	This section concerns an explanation of basic graph theory terms as they relate to our project for those unfamiliar with the concepts. Graph theory is a field of mathematics concerning objects (nodes) which define relations to one another by the connections between them (edges). Various algorithms can be used to depict and analyse graphs, making them extremely useful in both visualisation and research.
+	
+	A node is a discrete point contained within a graph, usually represented as a circle. Nodes can have arbitrary information attached to them for later analysis, such as their names. In our project, individual hashtags are represented as nodes, and we record the number of times each hashtag appears in total. Each node also contains its own toxicity and botscore (\autoref{subsec:toxicity}, \autoref{subsec:botscore}). After the modularity analysis (\autoref{subsec:modularity}), we also record the modularity class each node belongs to.
+	
+	An edge is a connection between two nodes, usually represented as a line between two nodes. In graph theory, edges can have a direction, but our project has no need for this; as such, our network is "undirected" and simpler overall. Edge weights in our project represent a collocation between a pair of hashtags (\autoref{subsec:collocation}). Like nodes, edges can have arbitrary information attached to them, though the concept of an "edge weight" is very common. A weight represents the importance of an edge; for us, the number of times a collocation appears is a perfect consideration to use as an edge weight. An example of a use for edge weightings is in layout algorithms for network visualisation, demonstrated in our own project in \autoref{fig:1}. The strength of connections between nodes directly influences the layout of the final graph. Modularity analysis as used in \autoref{subsec:modularity} also uses edge weights to determine where community boundaries lie, and which hashtags are contained within each.
 	
 	\end{appendices}
 	%=========================================================================================================
