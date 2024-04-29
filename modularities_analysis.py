@@ -28,7 +28,7 @@ logging.basicConfig(filename='logs/modularities.log',  \
                 encoding='utf-8',         \
                 level=logging.WARNING)
 
-def main(multiprocessed):
+def main():
     """
     Function which: 
     - sets up data, 
@@ -36,9 +36,6 @@ def main(multiprocessed):
     - handles multiprocessing if enabled, 
     - calls imported functions from disslib
     - and writes out completed data processing.
-
-    Args:
-        multiprocessed (bool): Multiprocessing enabler. Broken, likely with no way to make this work due to complex GPU reliances.
     """
     # open files
     modularity_data = pd.read_csv("data/collocations/2_hashtag_modularities_nodes_1000plus.csv", encoding="utf-8", sep=" ", header=0, names=["ID", "appearances", "modularity"])
@@ -70,11 +67,15 @@ def main(multiprocessed):
     pkl_files, json_files = disslib.get_tweet_files(dir_path="data/elections2022/", pairs_only=True)
 
     # figure out what is and isn't done already
+    # enables on a toggle for demonstration purposes 
     done_set = set()
     to_process = []
-    already_done = glob.glob(os.path.join("data/2_hashtag_stbm", '*.csv'))
-    for file in already_done:
-        done_set.add(file.split(".")[0].split("_")[5])
+    filter_finished = False # toggle here
+    if filter_finished:
+        already_done = glob.glob(os.path.join("data/2_hashtag_stbm", '*.csv'))
+        for file in already_done:
+            done_set.add(file.split(".")[0].split("_")[5])
+    # if we aren't filtering finished, done_set is empty at this point, so all files will be processed
     for file in json_files:
         filedate = file.split(".")[0].split("-")[1]
         if filedate not in done_set:
@@ -121,6 +122,7 @@ def main(multiprocessed):
     # but the CPU sucks at running the torch operations, that's why we offloaded to GPU in the first place
     # so it would take just as long if not longer anyway
     # :(
+    multiprocessed = False # enable/disable multiprocessing
     if multiprocessed:
         # multiprocessing setup
         set_start_method("forkserver")
@@ -341,4 +343,4 @@ def run_tox_model(texts_to_process, tox_model, model_lock, start_time, filedate)
     return predictions
 
 if __name__ == '__main__':
-    main(multiprocessed=False)
+    main()
