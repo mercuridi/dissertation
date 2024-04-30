@@ -67,7 +67,7 @@ def main():
     pkl_files, json_files = disslib.get_tweet_files(dir_path="data/elections2022/", pairs_only=True)
 
     # figure out what is and isn't done already
-    # enables on a toggle for demonstration purposes 
+    # enables on a toggle for demonstration purposes
     done_set = set()
     to_process = []
     filter_finished = False # toggle here
@@ -90,7 +90,6 @@ def main():
     pt_core = disslib.load_pt_core()
 
     # setting up tracking variables for main loop
-    total_tweets_checked = 0
     tweets_found = 0
     print("")
     print(dt.datetime.now())
@@ -144,7 +143,6 @@ def main():
                         sentilex,
                         br_stopwords,
                         pt_core,
-                        total_tweets_checked,
                         tweets_found,
                         start,
                         json_file,
@@ -163,7 +161,6 @@ def main():
     else:
         # set up variables
         start = time.time()
-        to_process = []
         lock = Lock()
 
         # shuffle the files to process, just for fun, why not
@@ -307,19 +304,19 @@ def run_tox_model(texts_to_process, tox_model, model_lock, start_time, filedate)
     Helper function to run the toxicity model on many texts.
 
     Args:
-        texts_to_process (_type_): _description_
-        tox_model (_type_): _description_
-        model_lock (_type_): _description_
-        start_time (_type_): _description_
-        filedate (_type_): _description_
+        texts_to_process (list): List of texts to run the toxicity model on
+        tox_model (ClassificationModel): Toxicity model as loaded by disslib.load_tox_model()
+        model_lock (multiprocessing.lock): The lock for printing results.
+        start_time (time): The global start time of the program
+        filedate (string): The date of the file being processed
 
     Returns:
-        _type_: _description_
+        list: The list of predictions the model has made on the texts.
     """
     predictions = []
     verbose = False
     threshold = 1000
-    times_to_print = 20
+    times_to_print = 10
     times_printed = 0
     if len(texts_to_process) > threshold:
         verbose = True
