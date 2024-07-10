@@ -383,8 +383,10 @@ def parse_tweet(tw):
 
     entities = {
         '.'.join(k): safeget(tw,k) for k in (
-            ('id_str',),
-            ("text",)
+            ("id_str",),
+            #("text",), #COMMENTED OUT FOR POSTGRAD ADAPTATION
+            ("created_at",),
+            ("user","id_str",)
         )
     }
     return entities
