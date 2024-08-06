@@ -383,10 +383,43 @@ def parse_tweet(tw):
 
     entities = {
         '.'.join(k): safeget(tw,k) for k in (
-            ("id_str",),
-            #("text",), #COMMENTED OUT FOR POSTGRAD ADAPTATION
-            ("created_at",),
-            ("user","id_str",)
+            ('id_str',), 
+            ('user','id_str'),
+            ('user','screen_name'),
+            ('user','followers_count'),
+            #('timestamp_ms',),
+            ('entities','hashtags'),
+            ('entities','urls'),
+            ('entities','user_mentions'),
+            ('in_reply_to_status_id_str',),
+            ('in_reply_to_user_id_str',),
+            ('retweeted_status','id_str'),
+            ('retweeted_status','user','id_str'),
+            #('retweeted_status','entities','hashtags'),
+            #('retweeted_status','entities','urls'),
+            #('retweeted_status','entities','user_mentions'),
+            ('quoted_status','id_str'),
+            ('quoted_status','user','id_str'),
+            #('quoted_status','entities','hashtags'),
+            #('quoted_status','entities','urls'),
+            #('quoted_status','entities','user_mentions'),
+            #('coordinates',),
+            #('place',),
+            ## extended fields
+            #('truncated',),
+            #('extended_tweet','entities','hashtags'),
+            #('extended_tweet','entities','urls'),
+            #('extended_tweet','entities','user_mentions'),
+
+            #('retweeted_status','truncated'),
+            #('retweeted_status','extended_tweet','entities','hashtags'),
+            #('retweeted_status','extended_tweet','entities','urls'),
+            #('retweeted_status','extended_tweet','entities','user_mentions'),
+            
+            #('quoted_status','truncated'),
+            #('quoted_status','extended_tweet','entities','hashtags'),
+            #('quoted_status','extended_tweet','entities','urls'),
+            #('quoted_status','extended_tweet','entities','user_mentions'),
         )
     }
     return entities
